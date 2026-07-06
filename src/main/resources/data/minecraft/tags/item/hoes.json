@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "dream_equipment:emerald_hoe",
+    "dream_equipment:lapis_hoe",
+    "dream_equipment:redstone_hoe",
+    "dream_equipment:amethyst_hoe",
+    "dream_equipment:prismarine_hoe",
+    "dream_equipment:granite_hoe",
+    "dream_equipment:diorite_hoe",
+    "dream_equipment:andesite_hoe"
+  ]
+}

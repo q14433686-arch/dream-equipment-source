@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MIM",
+    "MMM",
+    " M "
+  ],
+  "key": {
+    "M": "minecraft:red_sandstone",
+    "I": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "dream_equipment:red_sandstone_shield",
+    "count": 1
+  }
+}

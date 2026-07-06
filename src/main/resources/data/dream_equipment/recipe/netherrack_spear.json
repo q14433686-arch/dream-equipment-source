@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "  M",
+    " S ",
+    "S  "
+  ],
+  "key": {
+    "M": "minecraft:netherrack",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:netherrack_spear",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:lapis_lazuli"
+  },
+  "result": {
+    "id": "dream_equipment:lapis_leggings",
+    "count": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "dream_equipment:smooth_basalt"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "dream_equipment:smooth_basalt"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "dream_equipment:smooth_basalt_leggings"
+      }
+    ]
+  }
+}

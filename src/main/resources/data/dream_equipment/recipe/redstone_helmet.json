@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "BRB",
+    "R R"
+  ],
+  "key": {
+    "R": "minecraft:redstone",
+    "B": "minecraft:redstone_block"
+  },
+  "result": {
+    "id": "dream_equipment:redstone_helmet",
+    "count": 1
+  }
+}

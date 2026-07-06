@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "MMM",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "M": "minecraft:tuff",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:tuff_pickaxe",
+    "count": 1
+  }
+}

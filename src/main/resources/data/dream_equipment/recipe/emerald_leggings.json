@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "BBB",
+    "E E",
+    "B B"
+  ],
+  "key": {
+    "B": "minecraft:emerald_block",
+    "E": "minecraft:emerald"
+  },
+  "result": {
+    "id": "dream_equipment:emerald_leggings",
+    "count": 1
+  }
+}

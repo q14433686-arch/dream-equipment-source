@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": "minecraft:dark_oak_log"
+  },
+  "result": {
+    "id": "dream_equipment:dark_oak_log_chestplate",
+    "count": 1
+  }
+}

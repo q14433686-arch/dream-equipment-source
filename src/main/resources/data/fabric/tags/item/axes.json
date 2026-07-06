@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "dream_equipment:emerald_axe",
+    "dream_equipment:glass_axe",
+    "dream_equipment:obsidian_axe",
+    "dream_equipment:lapis_axe",
+    "dream_equipment:redstone_axe",
+    "dream_equipment:quartz_axe",
+    "dream_equipment:amethyst_axe",
+    "dream_equipment:prismarine_axe",
+    "dream_equipment:mossy_cobblestone_axe",
+    "dream_equipment:cobbled_deepslate_axe",
+    "dream_equipment:end_stone_axe",
+    "dream_equipment:tuff_axe",
+    "dream_equipment:granite_axe",
+    "dream_equipment:diorite_axe",
+    "dream_equipment:andesite_axe",
+    "dream_equipment:basalt_axe",
+    "dream_equipment:smooth_basalt_axe"
+  ]
+}

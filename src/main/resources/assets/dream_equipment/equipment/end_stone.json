@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "dream_equipment:end_stone"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "dream_equipment:end_stone"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "dream_equipment:end_stone_leggings"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:crimson_stem"
+  },
+  "result": {
+    "id": "dream_equipment:crimson_stem_helmet",
+    "count": 1
+  }
+}

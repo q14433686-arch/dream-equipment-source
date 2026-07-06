@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "dream_equipment:red_sandstone"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "dream_equipment:red_sandstone"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "dream_equipment:red_sandstone_leggings"
+      }
+    ]
+  }
+}

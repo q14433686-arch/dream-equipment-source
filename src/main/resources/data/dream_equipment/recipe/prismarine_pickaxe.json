@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "PHP",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "P": "minecraft:prismarine_shard",
+    "H": "minecraft:heart_of_the_sea",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:prismarine_pickaxe",
+    "count": 1
+  }
+}

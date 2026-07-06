@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "MM",
+    "MS",
+    " S"
+  ],
+  "key": {
+    "M": "minecraft:end_stone",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:end_stone_axe",
+    "count": 1
+  }
+}

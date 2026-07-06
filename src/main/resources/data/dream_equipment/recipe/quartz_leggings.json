@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:quartz"
+  },
+  "result": {
+    "id": "dream_equipment:quartz_leggings",
+    "count": 1
+  }
+}

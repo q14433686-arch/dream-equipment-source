@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "dream_equipment:emerald_spear",
+    "dream_equipment:cactus_spear",
+    "dream_equipment:bone_spear",
+    "dream_equipment:glass_spear",
+    "dream_equipment:obsidian_spear",
+    "dream_equipment:lapis_spear",
+    "dream_equipment:redstone_spear",
+    "dream_equipment:quartz_spear",
+    "dream_equipment:amethyst_spear",
+    "dream_equipment:prismarine_spear",
+    "dream_equipment:mossy_cobblestone_spear",
+    "dream_equipment:cobbled_deepslate_spear",
+    "dream_equipment:sandstone_spear",
+    "dream_equipment:red_sandstone_spear",
+    "dream_equipment:end_stone_spear",
+    "dream_equipment:tuff_spear",
+    "dream_equipment:calcite_spear",
+    "dream_equipment:granite_spear",
+    "dream_equipment:diorite_spear",
+    "dream_equipment:andesite_spear",
+    "dream_equipment:basalt_spear",
+    "dream_equipment:smooth_basalt_spear",
+    "dream_equipment:dripstone_block_spear",
+    "dream_equipment:netherrack_spear"
+  ]
+}

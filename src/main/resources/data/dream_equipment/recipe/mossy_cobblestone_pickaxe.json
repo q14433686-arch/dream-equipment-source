@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "MMM",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "M": "minecraft:mossy_cobblestone",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:mossy_cobblestone_pickaxe",
+    "count": 1
+  }
+}

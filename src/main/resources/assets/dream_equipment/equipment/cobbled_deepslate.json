@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "dream_equipment:cobbled_deepslate"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "dream_equipment:cobbled_deepslate"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "dream_equipment:cobbled_deepslate_leggings"
+      }
+    ]
+  }
+}

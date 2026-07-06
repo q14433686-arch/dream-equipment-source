@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "  M",
+    " S ",
+    "S  "
+  ],
+  "key": {
+    "M": "minecraft:cactus",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:cactus_spear",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": "minecraft:lapis_lazuli"
+  },
+  "result": {
+    "id": "dream_equipment:lapis_chestplate",
+    "count": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:pale_oak_planks"
+  },
+  "result": {
+    "id": "dream_equipment:pale_oak_helmet",
+    "count": 1
+  }
+}

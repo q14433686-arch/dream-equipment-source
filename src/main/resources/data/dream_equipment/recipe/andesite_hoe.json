@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "MM",
+    " S",
+    " S"
+  ],
+  "key": {
+    "M": "minecraft:andesite",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:andesite_hoe",
+    "count": 1
+  }
+}

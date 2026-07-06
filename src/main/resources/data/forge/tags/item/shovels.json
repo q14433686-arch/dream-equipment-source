@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "dream_equipment:emerald_shovel",
+    "dream_equipment:lapis_shovel",
+    "dream_equipment:redstone_shovel",
+    "dream_equipment:amethyst_shovel",
+    "dream_equipment:prismarine_shovel",
+    "dream_equipment:mossy_cobblestone_shovel",
+    "dream_equipment:sandstone_shovel",
+    "dream_equipment:red_sandstone_shovel",
+    "dream_equipment:tuff_shovel",
+    "dream_equipment:granite_shovel",
+    "dream_equipment:diorite_shovel",
+    "dream_equipment:andesite_shovel"
+  ]
+}

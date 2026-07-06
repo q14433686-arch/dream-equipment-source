@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.dreamequipment.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "SignalGetterMixin",
+    "RedStoneWireBlockMixin",
+    "RedstoneWireEvaluatorMixin",
+    "EnchantmentMenuAccessor",
+    "EnchantmentMenuMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ShieldSpecialRendererMixin"
+  ]
+}

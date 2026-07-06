@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "dream_equipment:emerald_sword",
+    "dream_equipment:bone_sword",
+    "dream_equipment:glass_sword",
+    "dream_equipment:obsidian_sword",
+    "dream_equipment:lapis_sword",
+    "dream_equipment:redstone_sword",
+    "dream_equipment:quartz_sword",
+    "dream_equipment:amethyst_sword",
+    "dream_equipment:prismarine_sword",
+    "dream_equipment:mossy_cobblestone_sword",
+    "dream_equipment:cobbled_deepslate_sword",
+    "dream_equipment:sandstone_sword",
+    "dream_equipment:red_sandstone_sword",
+    "dream_equipment:end_stone_sword",
+    "dream_equipment:calcite_sword",
+    "dream_equipment:granite_sword",
+    "dream_equipment:diorite_sword",
+    "dream_equipment:andesite_sword"
+  ]
+}

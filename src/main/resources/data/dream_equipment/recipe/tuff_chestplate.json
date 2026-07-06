@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": "minecraft:tuff"
+  },
+  "result": {
+    "id": "dream_equipment:tuff_chestplate",
+    "count": 1
+  }
+}

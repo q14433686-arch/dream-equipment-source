@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:mangrove_log"
+  },
+  "result": {
+    "id": "dream_equipment:mangrove_log_leggings",
+    "count": 1
+  }
+}

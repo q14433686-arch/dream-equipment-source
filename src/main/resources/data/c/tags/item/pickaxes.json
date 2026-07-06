@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "dream_equipment:emerald_pickaxe",
+    "dream_equipment:lapis_pickaxe",
+    "dream_equipment:redstone_pickaxe",
+    "dream_equipment:amethyst_pickaxe",
+    "dream_equipment:prismarine_pickaxe",
+    "dream_equipment:mossy_cobblestone_pickaxe",
+    "dream_equipment:cobbled_deepslate_pickaxe",
+    "dream_equipment:end_stone_pickaxe",
+    "dream_equipment:tuff_pickaxe",
+    "dream_equipment:granite_pickaxe",
+    "dream_equipment:diorite_pickaxe",
+    "dream_equipment:andesite_pickaxe",
+    "dream_equipment:basalt_pickaxe"
+  ]
+}

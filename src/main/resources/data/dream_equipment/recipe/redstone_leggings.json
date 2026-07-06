@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "BBB",
+    "R R",
+    "B B"
+  ],
+  "key": {
+    "R": "minecraft:redstone",
+    "B": "minecraft:redstone_block"
+  },
+  "result": {
+    "id": "dream_equipment:redstone_leggings",
+    "count": 1
+  }
+}

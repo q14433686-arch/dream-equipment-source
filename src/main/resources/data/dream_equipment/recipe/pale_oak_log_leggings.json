@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:pale_oak_log"
+  },
+  "result": {
+    "id": "dream_equipment:pale_oak_log_leggings",
+    "count": 1
+  }
+}

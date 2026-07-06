@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "  M",
+    " S ",
+    "S  "
+  ],
+  "key": {
+    "M": "minecraft:calcite",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:calcite_spear",
+    "count": 1
+  }
+}

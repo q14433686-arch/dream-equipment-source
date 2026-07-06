@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MIM",
+    "MMM",
+    " M "
+  ],
+  "key": {
+    "M": "minecraft:dark_oak_planks",
+    "I": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "dream_equipment:dark_oak_shield",
+    "count": 1
+  }
+}

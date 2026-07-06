@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:bone"
+  },
+  "result": {
+    "id": "dream_equipment:bone_leggings",
+    "count": 1
+  }
+}

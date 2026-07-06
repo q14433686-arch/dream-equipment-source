@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "B B",
+    "E E"
+  ],
+  "key": {
+    "B": "minecraft:emerald_block",
+    "E": "minecraft:emerald"
+  },
+  "result": {
+    "id": "dream_equipment:emerald_boots",
+    "count": 1
+  }
+}

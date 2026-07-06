@@ -1,0 +1,460 @@
+{
+  "enabled": true,
+  "passive_effects": [
+    {
+      "material": "emerald",
+      "effect": "minecraft:luck",
+      "condition": "always",
+      "duration_ticks": 220,
+      "amplifier": 0
+    },
+    {
+      "material": "emerald",
+      "effect": "minecraft:hero_of_the_village",
+      "condition": "always",
+      "duration_ticks": 220,
+      "amplifier": 0
+    },
+    {
+      "material": "bone",
+      "effect": "minecraft:night_vision",
+      "condition": "always",
+      "duration_ticks": 260,
+      "amplifier": 0
+    },
+    {
+      "material": "lapis",
+      "effect": "minecraft:haste",
+      "condition": "always",
+      "duration_ticks": 220,
+      "amplifier": 0
+    },
+    {
+      "material": "quartz",
+      "effect": "minecraft:resistance",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "amethyst",
+      "effect": "minecraft:regeneration",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "prismarine",
+      "effect": "minecraft:water_breathing",
+      "condition": "always",
+      "duration_ticks": 260,
+      "amplifier": 0
+    },
+    {
+      "material": "prismarine",
+      "effect": "minecraft:dolphins_grace",
+      "condition": "in_water",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "slime",
+      "effect": "minecraft:jump_boost",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "slime",
+      "effect": "minecraft:slow_falling",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "cobbled_deepslate",
+      "effect": "minecraft:resistance",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "cobbled_deepslate",
+      "effect": "minecraft:slowness",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "blackstone",
+      "effect": "minecraft:fire_resistance",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "blackstone",
+      "effect": "minecraft:slowness",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "end_stone",
+      "effect": "minecraft:slow_falling",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "paper",
+      "effect": "minecraft:slow_falling",
+      "condition": "dry",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "paper",
+      "effect": "minecraft:weakness",
+      "condition": "wet",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "paper",
+      "effect": "minecraft:slowness",
+      "condition": "wet",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "obsidian",
+      "effect": "minecraft:fire_resistance",
+      "condition": "always",
+      "duration_ticks": 220,
+      "amplifier": 0
+    },
+    {
+      "material": "obsidian",
+      "effect": "minecraft:resistance",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "obsidian",
+      "effect": "minecraft:slowness",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "turtle_shell",
+      "effect": "minecraft:resistance",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 1
+    },
+    {
+      "material": "turtle_shell",
+      "effect": "minecraft:slowness",
+      "condition": "always",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "turtle_shell",
+      "effect": "minecraft:water_breathing",
+      "condition": "always",
+      "duration_ticks": 260,
+      "amplifier": 0
+    }
+  ],
+  "cactus_retaliation": {
+    "enabled": true,
+    "damage_per_piece": 0.5
+  },
+  "slime": {
+    "enabled": true,
+    "durability_damage_per_tick": 1,
+    "damage_cancel_chance": 0.1,
+    "boots_safe_fall_distance": 12.0,
+    "bounce_min_velocity": 0.45,
+    "bounce_distance_divisor": 14.0,
+    "fall_heal_ratio": 0.5,
+    "return_slime_balls": {
+      "helmet": 4,
+      "chestplate": 8,
+      "leggings": 7,
+      "boots": 4
+    }
+  },
+  "wet_durability": [
+    {
+      "material": "paper",
+      "interval_ticks": 10,
+      "damage": 1
+    }
+  ],
+  "brittle_sets": [
+    {
+      "material": "glass",
+      "damage_threshold": 6.0,
+      "shatter_chance": 0.25
+    },
+    {
+      "material": "calcite",
+      "damage_threshold": 5.0,
+      "shatter_chance": 0.2
+    },
+    {
+      "material": "quartz",
+      "damage_threshold": 7.0,
+      "shatter_chance": 0.1
+    },
+    {
+      "material": "amethyst",
+      "damage_threshold": 8.0,
+      "shatter_chance": 0.08
+    }
+  ],
+  "redstone_signal": {
+    "enabled": true,
+    "boots_signal": 7,
+    "full_set_signal": 15,
+    "boots_pulse_ticks": 8,
+    "full_set_pulse_ticks": 12
+  },
+  "wet_repair": [
+    {
+      "material": "mossy_cobblestone",
+      "interval_ticks": 60,
+      "repair": 1
+    }
+  ],
+  "brittle_weapons": [
+    {
+      "material": "obsidian",
+      "break_chance": 0.05
+    },
+    {
+      "material": "bone",
+      "break_chance": 0.04
+    }
+  ],
+  "stone_armor_physics": [
+    {
+      "material": "netherrack",
+      "cancel_chance_per_piece": 0.006,
+      "shatter_damage_threshold": 4.5,
+      "slowness_per_piece": 0.02
+    },
+    {
+      "material": "sandstone",
+      "cancel_chance_per_piece": 0.01,
+      "shatter_damage_threshold": 5.0,
+      "slowness_per_piece": 0.04
+    },
+    {
+      "material": "red_sandstone",
+      "cancel_chance_per_piece": 0.01,
+      "shatter_damage_threshold": 5.0,
+      "slowness_per_piece": 0.04
+    },
+    {
+      "material": "calcite",
+      "cancel_chance_per_piece": 0.012,
+      "shatter_damage_threshold": 5.0,
+      "slowness_per_piece": 0.04
+    },
+    {
+      "material": "glass",
+      "cancel_chance_per_piece": 0.012,
+      "shatter_damage_threshold": 5.0,
+      "slowness_per_piece": 0.02
+    },
+    {
+      "material": "mossy_cobblestone",
+      "cancel_chance_per_piece": 0.016,
+      "shatter_damage_threshold": 6.0,
+      "slowness_per_piece": 0.1
+    },
+    {
+      "material": "stone",
+      "cancel_chance_per_piece": 0.018,
+      "shatter_damage_threshold": 6.5,
+      "slowness_per_piece": 0.11
+    },
+    {
+      "material": "cobblestone",
+      "cancel_chance_per_piece": 0.02,
+      "shatter_damage_threshold": 6.5,
+      "slowness_per_piece": 0.12
+    },
+    {
+      "material": "dripstone_block",
+      "cancel_chance_per_piece": 0.02,
+      "shatter_damage_threshold": 6.0,
+      "slowness_per_piece": 0.12
+    },
+    {
+      "material": "quartz",
+      "cancel_chance_per_piece": 0.02,
+      "shatter_damage_threshold": 6.5,
+      "slowness_per_piece": 0.07
+    },
+    {
+      "material": "tuff",
+      "cancel_chance_per_piece": 0.024,
+      "shatter_damage_threshold": 7.0,
+      "slowness_per_piece": 0.15
+    },
+    {
+      "material": "granite",
+      "cancel_chance_per_piece": 0.026,
+      "shatter_damage_threshold": 7.5,
+      "slowness_per_piece": 0.16
+    },
+    {
+      "material": "diorite",
+      "cancel_chance_per_piece": 0.027,
+      "shatter_damage_threshold": 7.5,
+      "slowness_per_piece": 0.16
+    },
+    {
+      "material": "andesite",
+      "cancel_chance_per_piece": 0.028,
+      "shatter_damage_threshold": 7.8,
+      "slowness_per_piece": 0.17
+    },
+    {
+      "material": "amethyst",
+      "cancel_chance_per_piece": 0.028,
+      "shatter_damage_threshold": 8.0,
+      "slowness_per_piece": 0.08
+    },
+    {
+      "material": "end_stone",
+      "cancel_chance_per_piece": 0.032,
+      "shatter_damage_threshold": 8.0,
+      "slowness_per_piece": 0.18
+    },
+    {
+      "material": "cobbled_deepslate",
+      "cancel_chance_per_piece": 0.04,
+      "shatter_damage_threshold": 9.0,
+      "slowness_per_piece": 0.25
+    },
+    {
+      "material": "blackstone",
+      "cancel_chance_per_piece": 0.042,
+      "shatter_damage_threshold": 9.0,
+      "slowness_per_piece": 0.26
+    },
+    {
+      "material": "obsidian",
+      "cancel_chance_per_piece": 0.045,
+      "shatter_damage_threshold": 9.5,
+      "slowness_per_piece": 0.22
+    },
+    {
+      "material": "basalt",
+      "cancel_chance_per_piece": 0.052,
+      "shatter_damage_threshold": 10.0,
+      "slowness_per_piece": 0.32
+    },
+    {
+      "material": "smooth_basalt",
+      "cancel_chance_per_piece": 0.052,
+      "shatter_damage_threshold": 10.0,
+      "slowness_per_piece": 0.32
+    },
+    {
+      "material": "bone",
+      "cancel_chance_per_piece": 0.012,
+      "shatter_damage_threshold": 5.5,
+      "slowness_per_piece": 0.03
+    }
+  ],
+  "armadillo_boots": {
+    "enabled": true,
+    "blocks": [
+      "minecraft:sand",
+      "minecraft:red_sand",
+      "minecraft:gravel",
+      "minecraft:suspicious_sand",
+      "minecraft:suspicious_gravel"
+    ],
+    "effect": "minecraft:speed",
+    "duration_ticks": 80,
+    "amplifier": 2
+  },
+  "held_effects": [
+    {
+      "item": "dream_equipment:prismarine_pickaxe",
+      "condition": "in_water",
+      "effect": "minecraft:haste",
+      "duration_ticks": 120,
+      "amplifier": 1
+    }
+  ],
+  "damage_immunities": [
+    {
+      "material": "amethyst",
+      "damage_type": "minecraft:sonic_boom"
+    }
+  ],
+  "shield_effects": {
+    "cactus": {
+      "enabled": true,
+      "retaliate_damage": 1.0,
+      "cooldown_ticks": 20
+    },
+    "glass": {
+      "enabled": true,
+      "shatter_threshold": 5.0,
+      "shatter_chance": 0.25
+    },
+    "redstone": {
+      "enabled": true,
+      "pulse_signal": 15,
+      "pulse_ticks": 8
+    },
+    "slime": {
+      "enabled": true,
+      "knockback_strength": 0.6,
+      "vertical_boost": 0.1
+    },
+    "paper": {
+      "enabled": true,
+      "wet_damage_interval": 20,
+      "wet_damage": 1
+    },
+    "obsidian": {
+      "enabled": true,
+      "refund_damage": 2,
+      "slowness_duration_ticks": 40,
+      "slowness_amplifier": 0
+    },
+    "prismarine": {
+      "enabled": true,
+      "water_refund_damage": 1
+    },
+    "amethyst": {
+      "enabled": true,
+      "sonic_boom_damage_cost": 8
+    },
+    "bone": {
+      "enabled": true,
+      "undead_refund_damage": 1
+    },
+    "coal": {
+      "enabled": true,
+      "fire_refund_damage": 2
+    },
+    "quartz": {
+      "enabled": true,
+      "projectile_refund_damage": 1
+    }
+  }
+}

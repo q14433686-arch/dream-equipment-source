@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:jungle_planks"
+  },
+  "result": {
+    "id": "dream_equipment:jungle_leggings",
+    "count": 1
+  }
+}

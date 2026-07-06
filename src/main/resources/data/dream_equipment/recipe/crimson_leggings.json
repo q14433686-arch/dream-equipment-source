@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:crimson_planks"
+  },
+  "result": {
+    "id": "dream_equipment:crimson_leggings",
+    "count": 1
+  }
+}

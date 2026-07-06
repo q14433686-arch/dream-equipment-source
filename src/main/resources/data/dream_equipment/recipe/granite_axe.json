@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "MM",
+    "MS",
+    " S"
+  ],
+  "key": {
+    "M": "minecraft:granite",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "dream_equipment:granite_axe",
+    "count": 1
+  }
+}
