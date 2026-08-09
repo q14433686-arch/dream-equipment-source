@@ -158,6 +158,20 @@ if zh_path.exists():
         if k.startswith(f'item.{MOD}.cobblestone_') and '原石' in v:
             errors.append(f'{k} uses 原石; should use 圆石')
 
+# Recipe category must be one of Minecraft's valid crafting categories (equipment, building, misc, redstone) — \"tools\" is invalid in 1.21+/26.x.
+valid_recipe_categories = {'equipment', 'building', 'misc', 'redstone'}
+for recipe_path in (RES/f'data/{MOD}/recipe').glob('*.json'):
+    try:
+        rdata = json.loads(recipe_path.read_text(encoding='utf-8'))
+        cat = rdata.get('category')
+        if cat is not None and cat not in valid_recipe_categories:
+            errors.append(f'{recipe_path.relative_to(ROOT)} has invalid recipe category \"{cat}\" — must be one of {sorted(valid_recipe_categories)}')
+        # Also ensure shaped recipes have valid type
+        if rdata.get('type') != 'minecraft:crafting_shaped':
+            errors.append(f'{recipe_path.relative_to(ROOT)} type should be minecraft:crafting_shaped')
+    except Exception as ex:
+        errors.append(f'{recipe_path.relative_to(ROOT)} failed to validate recipe JSON: {ex}')
+
 
 
 # Redstone equipment should use a stateful virtual-source registry rather than one-off player scans.
