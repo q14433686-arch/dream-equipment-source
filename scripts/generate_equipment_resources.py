@@ -238,11 +238,16 @@ def build_outputs():
                     outputs[f'src/main/resources/assets/{MOD}/models/item/{item}_in_hand.json']=ordered(model('minecraft:item/spear_in_hand', f'{MOD}:item/{item}_in_hand'))
                 else:
                     outputs[f'src/main/resources/assets/{MOD}/models/item/{item}.json']=ordered(model('minecraft:item/handheld', f'{MOD}:item/{item}'))
-                cat='tools' if tool in ['pickaxe','axe','shovel','hoe'] else 'equipment'
+                # Valid recipe categories in 1.21+/26.x are equipment, building, misc, redstone (tools is invalid).
+                cat='equipment'
                 
                 if item in recipe_overrides:
                     override=recipe_overrides[item]
-                    outputs[f'src/main/resources/data/{MOD}/recipe/{item}.json']=ordered(shaped_recipe(override['pattern'], override['key'], f'{MOD}:{item}', override.get('category',cat)))
+                    # Guard against legacy invalid category values in JSON (e.g. "tools").
+                    override_cat = override.get('category', cat)
+                    if override_cat == 'tools':
+                        override_cat = 'equipment'
+                    outputs[f'src/main/resources/data/{MOD}/recipe/{item}.json']=ordered(shaped_recipe(override['pattern'], override['key'], f'{MOD}:{item}', override_cat))
                 else:
                     outputs[f'src/main/resources/data/{MOD}/recipe/{item}.json']=ordered(shaped_recipe(TOOL_PATTERNS[tool], {'M': ingredient, 'S':'minecraft:stick'}, f'{MOD}:{item}', cat))
                 zh[f'item.{MOD}.{item}']=fam['zh_name'] + TOOL_ZH[tool]
