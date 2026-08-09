@@ -63,6 +63,12 @@ for i,f in enumerate(families):
     if shield and shield.get('enabled', True):
         expected_items.append(f'{fid}_shield')
         if int(shield.get('durability', 0)) <= 0: errors.append(f'{fid} shield durability must be >0')
+    # Validate recipe_overrides categories if present — must be valid Minecraft crafting category.
+    valid_recipe_categories={'equipment','building','misc','redstone'}
+    for ro_key, ro_val in f.get('recipe_overrides', {}).items():
+        cat=ro_val.get('category')
+        if cat is not None and cat not in valid_recipe_categories:
+            errors.append(f'{fid} recipe_overrides \"{ro_key}\" has invalid category \"{cat}\" — must be one of {sorted(valid_recipe_categories)}')
 # Cross-check concrete resources.
 for item in expected_items:
     resource_paths=[RES/f'assets/{MOD}/items/{item}.json', RES/f'assets/{MOD}/models/item/{item}.json', RES/f'data/{MOD}/recipe/{item}.json']

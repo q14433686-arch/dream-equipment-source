@@ -19,7 +19,7 @@ public abstract class ShieldSpecialRendererMixin {
         at = @At(value = "STORE"),
         ordinal = 0
     )
-    private SpriteId dream_equipment$useCustomShieldBase(SpriteId original, DataComponentMap components, PoseStack poseStack, SubmitNodeCollector collector, int light, int overlay, boolean glint, int something) {
+    private SpriteId dream_equipment$useCustomShieldBase(SpriteId original, DataComponentMap components, PoseStack poseStack, SubmitNodeCollector collector, int light, int overlay, boolean glint, int outlineColor) {
         Identifier texture = components == null ? null : components.get(DreamEquipmentDataComponents.SHIELD_BASE_TEXTURE);
         return texture == null ? original : new SpriteId(Sheets.SHIELD_SHEET, texture);
     }

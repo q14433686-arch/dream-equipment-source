@@ -243,7 +243,7 @@ def build_outputs():
                 
                 if item in recipe_overrides:
                     override=recipe_overrides[item]
-                    # Guard against legacy invalid category values in JSON (e.g. "tools").
+                    # Guard against legacy invalid category values in JSON (e.g. \"tools\").
                     override_cat = override.get('category', cat)
                     if override_cat == 'tools':
                         override_cat = 'equipment'
