@@ -1,10 +1,25 @@
 #!/usr/bin/env python3
 import json
+import struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 RES=ROOT/'src/main/resources'
 MOD='dream_equipment'
 errors=[]
+
+
+def read_png_size(path: Path) -> tuple[int, int]:
+    try:
+        from PIL import Image
+        with Image.open(path) as im:
+            return im.size
+    except ImportError:
+        with path.open('rb') as f:
+            header = f.read(24)
+        if len(header) < 24 or header[:8] != b'\x89PNG\r\n\x1a\n' or header[12:16] != b'IHDR':
+            raise ValueError(f'invalid PNG header in {path}')
+        return struct.unpack('>II', header[16:24])
+
 for src in ['src/main/java/com/dreamequipment/DreamEquipmentItems.java', 'src/main/java/com/dreamequipment/DreamEquipmentSetEffects.java', 'src/main/java/com/dreamequipment/DreamEquipmentFuelValues.java', 'src/main/java/com/dreamequipment/DreamEquipmentRedstonePower.java', 'src/main/java/com/dreamequipment/DreamEquipmentShieldEffects.java', 'src/main/java/com/dreamequipment/DreamEquipmentShieldEffectRules.java', 'src/main/java/com/dreamequipment/DreamEquipmentDataComponents.java', 'src/main/java/com/dreamequipment/mixin/ShieldSpecialRendererMixin.java', 'src/main/java/com/dreamequipment/mixin/RedStoneWireBlockMixin.java', 'src/main/java/com/dreamequipment/mixin/RedstoneWireEvaluatorMixin.java']:
     if not (ROOT/src).exists(): errors.append(f'missing {src}')
 
@@ -103,16 +118,15 @@ if family_json.exists():
 require(ROOT/'docs/assets/dream_equipment_cover.png')
 require(RES/f'assets/{MOD}/cover.png')
 try:
-    from PIL import Image
     for cover_path in [ROOT/'docs/assets/dream_equipment_cover.png', RES/f'assets/{MOD}/cover.png']:
         if cover_path.exists():
-            with Image.open(cover_path) as im:
-                if im.size[0] < 1000 or im.size[1] < 500:
-                    errors.append(f'{cover_path.relative_to(ROOT)} cover image is unexpectedly small: {im.size}')
+            size = read_png_size(cover_path)
+            if size[0] < 1000 or size[1] < 500:
+                errors.append(f'{cover_path.relative_to(ROOT)} cover image is unexpectedly small: {size}')
 except Exception as ex:
     errors.append(f'cover image validation failed: {ex}')
 
-# Current MC 26.1 equipment-layer spec and wood/log worn-layer generation guardrails.
+# Current MC 26.3 equipment-layer spec and wood/log worn-layer generation guardrails.
 wood_like_families=['oak','spruce','birch','jungle','acacia','dark_oak','mangrove','cherry','pale_oak','bamboo','crimson','warped','oak_log','spruce_log','birch_log','jungle_log','acacia_log','dark_oak_log','mangrove_log','cherry_log','pale_oak_log','bamboo_block','crimson_stem','warped_stem']
 wood_worn_generator=ROOT/'scripts/generate_wood_worn_textures.py'
 require(wood_worn_generator)
@@ -122,16 +136,15 @@ if wood_worn_generator.exists():
         if needle not in generator_src:
             errors.append(f'generate_wood_worn_textures.py missing spec marker {needle}')
 try:
-    from PIL import Image
     for fam in wood_like_families:
         layer_specs=[('humanoid', f'{fam}.png', (64,32)), ('humanoid_leggings', f'{fam}_leggings.png', (64,32)), ('humanoid_baby', f'{fam}.png', (64,64))]
         for sub, filename, expected_size in layer_specs:
             p=RES/f'assets/{MOD}/textures/entity/equipment/{sub}/{filename}'
             require(p)
             if p.exists():
-                with Image.open(p) as im:
-                    if im.size != expected_size:
-                        errors.append(f'{p.relative_to(ROOT)} size {im.size}, expected {expected_size}')
+                size = read_png_size(p)
+                if size != expected_size:
+                    errors.append(f'{p.relative_to(ROOT)} size {size}, expected {expected_size}')
 except Exception as ex:
     errors.append(f'wood worn layer image validation failed: {ex}')
 
@@ -187,9 +200,13 @@ fuel_source=ROOT/'src/main/java/com/dreamequipment/DreamEquipmentFuelValues.java
 family_json=RES/f'data/{MOD}/equipment_families.json'
 if fuel_source.exists():
     fuel_src=fuel_source.read_text(encoding='utf-8')
-    for needle in ['FuelValueEvents.BUILD', 'fuelBurnTimePerMaterial()', 'armorMaterialCount(piece)']:
+    for needle in ['fuelBurnTimePerMaterial()', 'armorMaterialCount(piece)']:
         if needle not in fuel_src:
             errors.append(f'DreamEquipmentFuelValues.java missing {needle}')
+    if 'DefaultItemComponentEvents.MODIFY' not in fuel_src and 'FuelValueEvents.BUILD' not in fuel_src:
+        errors.append('DreamEquipmentFuelValues.java missing DefaultItemComponentEvents.MODIFY / FuelValueEvents.BUILD')
+    if 'DefaultItemComponentEvents.MODIFY' in fuel_src and 'DataComponents.COOKING_FUEL' not in fuel_src:
+        errors.append('DreamEquipmentFuelValues.java missing DataComponents.COOKING_FUEL')
 if family_json.exists():
     fam_data=json.loads(family_json.read_text(encoding='utf-8'))
     fuel_fams={f.get('id') for f in fam_data.get('families', []) if int(f.get('fuel_burn_time_per_material', 0)) > 0}
@@ -197,13 +214,17 @@ if family_json.exists():
         if required not in fuel_fams:
             errors.append(f'{required} should declare positive fuel_burn_time_per_material')
 
-# Source sanity: axe/shovel/hoe must use the specialized vanilla item classes.
+# Source sanity: axe/shovel/hoe must attach vanilla tool properties (Item.Properties#axe / #shovel / #hoe in 26.3+).
 items_source=ROOT/'src/main/java/com/dreamequipment/DreamEquipmentItems.java'
 if items_source.exists():
     src=items_source.read_text(encoding='utf-8')
-    for needle in ['new AxeItem', 'new ShovelItem', 'new HoeItem']:
-        if needle not in src:
-            errors.append(f'DreamEquipmentItems.java missing {needle}')
+    for modern, legacy in [
+        ('.axe(toolMaterial, 5.0f, -3.0f)', 'new AxeItem'),
+        ('.shovel(toolMaterial, 1.5f, -3.0f)', 'new ShovelItem'),
+        ('.hoe(toolMaterial, -3.0f, 0.0f)', 'new HoeItem'),
+    ]:
+        if modern not in src and legacy not in src:
+            errors.append(f'DreamEquipmentItems.java missing {modern}')
 
 # Spear models must follow vanilla 26.1 render-vs-in-hand split.
 spears=[item for item in items if item.endswith('_spear')]
