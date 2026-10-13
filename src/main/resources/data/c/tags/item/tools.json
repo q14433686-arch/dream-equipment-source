@@ -92,6 +92,21 @@
     "dream_equipment:smooth_basalt_axe",
     "dream_equipment:smooth_basalt_spear",
     "dream_equipment:dripstone_block_spear",
-    "dream_equipment:netherrack_spear"
+    "dream_equipment:netherrack_spear",
+    "dream_equipment:sulfur_sword",
+    "dream_equipment:sulfur_pickaxe",
+    "dream_equipment:sulfur_axe",
+    "dream_equipment:sulfur_shovel",
+    "dream_equipment:sulfur_hoe",
+    "dream_equipment:sulfur_spear",
+    "dream_equipment:cinnabar_sword",
+    "dream_equipment:cinnabar_pickaxe",
+    "dream_equipment:cinnabar_axe",
+    "dream_equipment:cinnabar_shovel",
+    "dream_equipment:cinnabar_hoe",
+    "dream_equipment:cinnabar_spear",
+    "dream_equipment:resin_sword",
+    "dream_equipment:resin_spear",
+    "dream_equipment:nautilus_shell_spear"
   ]
 }

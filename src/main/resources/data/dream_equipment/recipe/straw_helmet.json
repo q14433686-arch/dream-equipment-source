@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M"
+  ],
+  "key": {
+    "M": "minecraft:straw_bed"
+  },
+  "result": {
+    "id": "dream_equipment:straw_helmet",
+    "count": 1
+  }
+}

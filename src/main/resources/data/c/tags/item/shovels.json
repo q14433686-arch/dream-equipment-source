@@ -12,6 +12,8 @@
     "dream_equipment:tuff_shovel",
     "dream_equipment:granite_shovel",
     "dream_equipment:diorite_shovel",
-    "dream_equipment:andesite_shovel"
+    "dream_equipment:andesite_shovel",
+    "dream_equipment:sulfur_shovel",
+    "dream_equipment:cinnabar_shovel"
   ]
 }

@@ -3,6 +3,8 @@ package com.dreamequipment;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -13,12 +15,14 @@ import net.minecraft.util.Prediction;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
 
 
 public final class DreamEquipmentSetEffects {
@@ -62,13 +66,42 @@ public final class DreamEquipmentSetEffects {
         }
         applyArmadilloBoots(player, rules.armadilloBoots);
         applyHeldEffects(player, rules);
+        applyPoplarAutumnLeaves(player);
+        applySulfurSetWard(player);
+        applyCinnabarAlchemyWard(player);
         for (DreamEquipmentSetEffectRules.StoneArmorPhysicsRule rule : rules.stoneArmorPhysicsRules) {
             int pieces = armorPieceCount(player, rule.material());
             if (pieces > 0 && rule.slownessPerPiece() > 0.0f) {
                 int amplifier = Math.max(0, (int)Math.ceil(pieces * rule.slownessPerPiece()) - 1);
-                add(player, net.minecraft.world.effect.MobEffects.SLOWNESS, 80, amplifier);
+                add(player, MobEffects.SLOWNESS, 80, amplifier);
             }
         }
+    }
+
+    private static void applyPoplarAutumnLeaves(ServerPlayer player) {
+        if (player.tickCount % 6 != 0) return;
+        if (!fullSet(player, "poplar") && !fullSet(player, "poplar_log")) return;
+        Vec3 vel = player.getDeltaMovement();
+        if (player.fallDistance <= 0.5f && vel.horizontalDistanceSqr() < 0.002) return;
+        SimpleParticleType[] leaves = {
+            ParticleTypes.RED_POPLAR_LEAVES,
+            ParticleTypes.ORANGE_POPLAR_LEAVES,
+            ParticleTypes.YELLOW_POPLAR_LEAVES
+        };
+        SimpleParticleType leaf = leaves[player.getRandom().nextInt(leaves.length)];
+        ((ServerLevel) player.level()).sendParticles(leaf, player.getX(), player.getY() + 1.0, player.getZ(), 2, 0.35, 0.35, 0.35, 0.02);
+    }
+
+    private static void applySulfurSetWard(ServerPlayer player) {
+        if (!fullSet(player, "sulfur")) return;
+        if (player.hasEffect(MobEffects.NAUSEA)) player.removeEffect(MobEffects.NAUSEA);
+        if (player.hasEffect(MobEffects.POISON)) player.removeEffect(MobEffects.POISON);
+    }
+
+    private static void applyCinnabarAlchemyWard(ServerPlayer player) {
+        if (!fullSet(player, "cinnabar")) return;
+        if (player.hasEffect(MobEffects.POISON)) player.removeEffect(MobEffects.POISON);
+        if (player.hasEffect(MobEffects.WITHER)) player.removeEffect(MobEffects.WITHER);
     }
 
 
@@ -114,6 +147,10 @@ public final class DreamEquipmentSetEffects {
             bounceLikeSlime(player, rules.slime);
             return false;
         }
+        if (wearing(player, EquipmentSlot.FEET, "shelf_mushroom_boots") && source.is(DamageTypeTags.IS_FALL) && player.fallDistance <= 8.0f) {
+            bounceLikeShelfMushroom(player);
+            return false;
+        }
         if (rules.slime.enabled() && fullSet(player, "slime") && player.getRandom().nextFloat() < rules.slime.damageCancelChance()) {
             return false;
         }
@@ -137,6 +174,22 @@ public final class DreamEquipmentSetEffects {
         if (wearing(player, EquipmentSlot.FEET, "armadillo_shell_boots") && source.is(DamageTypeTags.IS_FALL)) {
             player.heal(Math.max(0.0f, damageTaken * 0.35f));
         }
+        if (wearing(player, EquipmentSlot.FEET, "shelf_mushroom_boots") && source.is(DamageTypeTags.IS_FALL)) {
+            player.heal(Math.max(0.0f, damageTaken * 0.50f));
+            bounceLikeShelfMushroom(player);
+        }
+        if (wearing(player, EquipmentSlot.FEET, "cushion_boots") && source.is(DamageTypeTags.IS_FALL)) {
+            player.heal(Math.max(0.0f, damageTaken * 0.40f));
+            player.playSound(SoundEvents.CUSHION_SIT, 0.9f, 1.0f);
+        }
+        int resinPieces = armorPieceCount(player, "resin");
+        if (resinPieces > 0) {
+            applyResinStickyRetaliation(player, source, resinPieces);
+        }
+        int sulfurPieces = armorPieceCount(player, "sulfur");
+        if (sulfurPieces > 0 && (source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_EXPLOSION) || player.isInWater())) {
+            eruptSulfurGeyser(player, source);
+        }
         for (DreamEquipmentSetEffectRules.BrittleRule rule : rules.brittleRules) {
             if (hasStonePhysicsRule(rules, rule.material())) continue;
             if (fullSet(player, rule.material()) && damageTaken >= rule.damageThreshold() && player.getRandom().nextFloat() < rule.shatterChance()) {
@@ -146,6 +199,9 @@ public final class DreamEquipmentSetEffects {
         for (DreamEquipmentSetEffectRules.StoneArmorPhysicsRule rule : rules.stoneArmorPhysicsRules) {
             if (armorPieceCount(player, rule.material()) > 0 && damageTaken >= rule.shatterDamageThreshold()) {
                 shatterOneArmorPiece(player, rule.material(), true);
+                if ("sulfur".equals(rule.material())) {
+                    eruptSulfurGeyser(player, source);
+                }
             }
         }
         maybeBreakBrittleWeapon(source, rules);
@@ -240,6 +296,38 @@ public final class DreamEquipmentSetEffects {
         player.setDeltaMovement(player.getDeltaMovement().x, bounce, player.getDeltaMovement().z);
         player.syncVelocity = true;
         player.resetFallDistance();
+    }
+
+    private static void bounceLikeShelfMushroom(ServerPlayer player) {
+        double bounce = Math.min(0.85, Math.max(0.42, player.fallDistance * 0.075));
+        player.setDeltaMovement(player.getDeltaMovement().x, bounce, player.getDeltaMovement().z);
+        player.syncVelocity = true;
+        player.resetFallDistance();
+        player.playSound(SoundEvents.SHELF_MUSHROOM_BOUNCE, 0.9f, 1.0f);
+    }
+
+    private static void applyResinStickyRetaliation(ServerPlayer wearer, DamageSource source, int resinPieces) {
+        Entity attacker = source.getEntity();
+        if (!(attacker instanceof LivingEntity living) || attacker == wearer || !attacker.level().equals(wearer.level())) return;
+        living.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 40 + 20 * resinPieces, 1, false, true, true));
+        ((ServerLevel) wearer.level()).sendParticles(ParticleTypes.FALLING_HONEY, living.getX(), living.getY() + 1.0, living.getZ(), 6, 0.25, 0.35, 0.25, 0.02);
+    }
+
+    static void eruptSulfurGeyser(ServerPlayer wearer, DamageSource source) {
+        ServerLevel level = (ServerLevel) wearer.level();
+        level.sendParticles(ParticleTypes.SULFUR_BUBBLES, wearer.getX(), wearer.getY() + 0.5, wearer.getZ(), 18, 0.45, 0.35, 0.45, 0.06);
+        level.sendParticles(ParticleTypes.NOXIOUS_GAS, wearer.getX(), wearer.getY() + 0.8, wearer.getZ(), 8, 0.35, 0.25, 0.35, 0.02);
+        wearer.playSound(SoundEvents.GEYSER_ERUPTION_START, 0.85f, 1.05f);
+        Entity attacker = source.getEntity();
+        if (attacker instanceof LivingEntity living && attacker != wearer && attacker.level().equals(wearer.level())) {
+            Vec3 dir = living.position().subtract(wearer.position());
+            if (dir.lengthSqr() < 0.0001) dir = wearer.getLookAngle();
+            dir = dir.normalize().scale(0.45);
+            living.push(dir.x, 0.42, dir.z);
+            living.syncVelocity = true;
+            living.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 80, 0, false, true, true));
+            living.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 60, 0, false, true, true));
+        }
     }
 
     private static void damageSlimeArmor(ServerPlayer player, DreamEquipmentSetEffectRules.SlimeRule slime) {

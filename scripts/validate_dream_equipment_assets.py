@@ -127,7 +127,7 @@ except Exception as ex:
     errors.append(f'cover image validation failed: {ex}')
 
 # Current MC 26.3 equipment-layer spec and wood/log worn-layer generation guardrails.
-wood_like_families=['oak','spruce','birch','jungle','acacia','dark_oak','mangrove','cherry','pale_oak','bamboo','crimson','warped','oak_log','spruce_log','birch_log','jungle_log','acacia_log','dark_oak_log','mangrove_log','cherry_log','pale_oak_log','bamboo_block','crimson_stem','warped_stem']
+wood_like_families=['oak','spruce','birch','jungle','acacia','dark_oak','mangrove','cherry','pale_oak','bamboo','crimson','warped','poplar','oak_log','spruce_log','birch_log','jungle_log','acacia_log','dark_oak_log','mangrove_log','cherry_log','pale_oak_log','bamboo_block','crimson_stem','warped_stem','poplar_log']
 wood_worn_generator=ROOT/'scripts/generate_wood_worn_textures.py'
 require(wood_worn_generator)
 if wood_worn_generator.exists():
@@ -210,7 +210,7 @@ if fuel_source.exists():
 if family_json.exists():
     fam_data=json.loads(family_json.read_text(encoding='utf-8'))
     fuel_fams={f.get('id') for f in fam_data.get('families', []) if int(f.get('fuel_burn_time_per_material', 0)) > 0}
-    for required in ['coal','oak','spruce','birch','jungle','acacia','dark_oak','mangrove','cherry','pale_oak','bamboo','crimson','warped','oak_log','spruce_log','birch_log','jungle_log','acacia_log','dark_oak_log','mangrove_log','cherry_log','pale_oak_log','bamboo_block','crimson_stem','warped_stem']:
+    for required in ['coal','oak','spruce','birch','jungle','acacia','dark_oak','mangrove','cherry','pale_oak','bamboo','crimson','warped','poplar','oak_log','spruce_log','birch_log','jungle_log','acacia_log','dark_oak_log','mangrove_log','cherry_log','pale_oak_log','bamboo_block','crimson_stem','warped_stem','poplar_log','sulfur','straw','cushion']:
         if required not in fuel_fams:
             errors.append(f'{required} should declare positive fuel_burn_time_per_material')
 

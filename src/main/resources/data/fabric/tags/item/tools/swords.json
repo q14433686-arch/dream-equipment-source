@@ -18,6 +18,9 @@
     "dream_equipment:calcite_sword",
     "dream_equipment:granite_sword",
     "dream_equipment:diorite_sword",
-    "dream_equipment:andesite_sword"
+    "dream_equipment:andesite_sword",
+    "dream_equipment:sulfur_sword",
+    "dream_equipment:cinnabar_sword",
+    "dream_equipment:resin_sword"
   ]
 }

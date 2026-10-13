@@ -2309,6 +2309,377 @@
         "enabled": true,
         "durability": 420
       }
+    },
+    {
+      "id": "poplar",
+      "ingredient": "minecraft:poplar_planks",
+      "zh_name": "白杨木",
+      "en_name": "Poplar",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 7,
+        "enchantment_value": 14,
+        "equip_sound": "leather",
+        "toughness": 0.0,
+        "knockback_resistance": 0.0,
+        "defense": {
+          "helmet": 1,
+          "chestplate": 2,
+          "leggings": 2,
+          "boots": 1
+        }
+      },
+      "repair_ingredients": [
+        "minecraft:poplar_planks"
+      ],
+      "fuel_burn_time_per_material": 300,
+      "shield": {
+        "enabled": true,
+        "durability": 336
+      }
+    },
+    {
+      "id": "poplar_log",
+      "ingredient": "minecraft:poplar_log",
+      "zh_name": "白杨原木",
+      "en_name": "Poplar Log",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 12,
+        "enchantment_value": 12,
+        "equip_sound": "leather",
+        "toughness": 0.0,
+        "knockback_resistance": 0.0,
+        "defense": {
+          "helmet": 1,
+          "chestplate": 3,
+          "leggings": 2,
+          "boots": 1
+        }
+      },
+      "repair_ingredients": [
+        "#minecraft:poplar_logs",
+        "minecraft:poplar_planks"
+      ],
+      "fuel_burn_time_per_material": 300,
+      "shield": {
+        "enabled": true,
+        "durability": 420
+      }
+    },
+    {
+      "id": "sulfur",
+      "ingredient": "minecraft:sulfur",
+      "zh_name": "硫磺",
+      "en_name": "Sulfur",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 10,
+        "enchantment_value": 14,
+        "equip_sound": "iron",
+        "toughness": 0.0,
+        "knockback_resistance": 0.0,
+        "defense": {
+          "helmet": 2,
+          "chestplate": 4,
+          "leggings": 3,
+          "boots": 1
+        }
+      },
+      "tools": {
+        "types": [
+          "sword",
+          "pickaxe",
+          "axe",
+          "shovel",
+          "hoe",
+          "spear"
+        ],
+        "incorrect_blocks_for_drops": "minecraft:incorrect_for_stone_tool",
+        "durability": 190,
+        "speed": 5.2,
+        "attack_damage_bonus": 1.5,
+        "enchantment_value": 14
+      },
+      "repair_ingredients": [
+        "minecraft:sulfur",
+        "minecraft:polished_sulfur",
+        "minecraft:sulfur_bricks",
+        "minecraft:chiseled_sulfur",
+        "minecraft:potent_sulfur",
+        "minecraft:sulfur_spike"
+      ],
+      "fuel_burn_time_per_material": 400,
+      "shield": {
+        "enabled": true,
+        "durability": 260
+      }
+    },
+    {
+      "id": "cinnabar",
+      "ingredient": "minecraft:cinnabar",
+      "zh_name": "朱砂",
+      "en_name": "Cinnabar",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 14,
+        "enchantment_value": 18,
+        "equip_sound": "iron",
+        "toughness": 0.5,
+        "knockback_resistance": 0.0,
+        "defense": {
+          "helmet": 2,
+          "chestplate": 5,
+          "leggings": 4,
+          "boots": 2
+        }
+      },
+      "tools": {
+        "types": [
+          "sword",
+          "pickaxe",
+          "axe",
+          "shovel",
+          "hoe",
+          "spear"
+        ],
+        "incorrect_blocks_for_drops": "minecraft:incorrect_for_stone_tool",
+        "durability": 270,
+        "speed": 5.4,
+        "attack_damage_bonus": 1.6,
+        "enchantment_value": 18
+      },
+      "repair_ingredients": [
+        "minecraft:cinnabar",
+        "minecraft:polished_cinnabar",
+        "minecraft:cinnabar_bricks",
+        "minecraft:chiseled_cinnabar"
+      ],
+      "shield": {
+        "enabled": true,
+        "durability": 340
+      }
+    },
+    {
+      "id": "shelf_mushroom",
+      "ingredient": "minecraft:shelf_mushroom",
+      "zh_name": "层架菌",
+      "en_name": "Shelf Mushroom",
+      "armor": {
+        "pieces": [
+          "boots"
+        ],
+        "durability_multiplier": 9,
+        "enchantment_value": 14,
+        "equip_sound": "leather",
+        "toughness": 0.0,
+        "knockback_resistance": 0.0,
+        "defense": {
+          "helmet": 1,
+          "chestplate": 3,
+          "leggings": 2,
+          "boots": 1
+        }
+      },
+      "repair_ingredients": [
+        "minecraft:shelf_mushroom",
+        "minecraft:brown_mushroom_block",
+        "minecraft:red_mushroom_block",
+        "minecraft:mushroom_stem"
+      ],
+      "shield": {
+        "enabled": true,
+        "durability": 240
+      }
+    },
+    {
+      "id": "resin",
+      "ingredient": "minecraft:resin_brick",
+      "zh_name": "树脂",
+      "en_name": "Resin",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 12,
+        "enchantment_value": 16,
+        "equip_sound": "chain",
+        "toughness": 0.5,
+        "knockback_resistance": 0.05,
+        "defense": {
+          "helmet": 2,
+          "chestplate": 5,
+          "leggings": 4,
+          "boots": 1
+        }
+      },
+      "tools": {
+        "types": [
+          "sword",
+          "spear"
+        ],
+        "incorrect_blocks_for_drops": "minecraft:incorrect_for_stone_tool",
+        "durability": 210,
+        "speed": 4.8,
+        "attack_damage_bonus": 1.4,
+        "enchantment_value": 16
+      },
+      "repair_ingredients": [
+        "minecraft:resin_brick",
+        "minecraft:resin_clump",
+        "minecraft:resin_block",
+        "minecraft:resin_bricks",
+        "minecraft:chiseled_resin_bricks"
+      ],
+      "shield": {
+        "enabled": true,
+        "durability": 310
+      }
+    },
+    {
+      "id": "nautilus_shell",
+      "ingredient": "minecraft:nautilus_shell",
+      "zh_name": "鹦鹉螺壳",
+      "en_name": "Nautilus Shell",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 22,
+        "enchantment_value": 16,
+        "equip_sound": "turtle",
+        "toughness": 1.0,
+        "knockback_resistance": 0.05,
+        "defense": {
+          "helmet": 2,
+          "chestplate": 6,
+          "leggings": 5,
+          "boots": 2
+        }
+      },
+      "tools": {
+        "types": [
+          "spear"
+        ],
+        "incorrect_blocks_for_drops": "minecraft:incorrect_for_iron_tool",
+        "durability": 480,
+        "speed": 6.2,
+        "attack_damage_bonus": 2.0,
+        "enchantment_value": 16
+      },
+      "repair_ingredients": [
+        "minecraft:nautilus_shell",
+        "minecraft:prismarine_shard",
+        "minecraft:prismarine_crystals"
+      ],
+      "shield": {
+        "enabled": true,
+        "durability": 540
+      }
+    },
+    {
+      "id": "straw",
+      "ingredient": "minecraft:straw_bed",
+      "zh_name": "草编",
+      "en_name": "Straw",
+      "armor": {
+        "pieces": [
+          "helmet",
+          "chestplate",
+          "leggings",
+          "boots"
+        ],
+        "durability_multiplier": 5,
+        "enchantment_value": 16,
+        "equip_sound": "leather",
+        "toughness": 0.0,
+        "knockback_resistance": 0.0,
+        "defense": {
+          "helmet": 1,
+          "chestplate": 2,
+          "leggings": 2,
+          "boots": 1
+        },
+        "zh_overrides": {
+          "helmet": "草帽",
+          "chestplate": "草编蓑衣",
+          "leggings": "草编护腿",
+          "boots": "草鞋"
+        },
+        "en_overrides": {
+          "helmet": "Straw Hat",
+          "chestplate": "Straw Raincoat",
+          "leggings": "Straw Leggings",
+          "boots": "Straw Sandals"
+        }
+      },
+      "repair_ingredients": [
+        "minecraft:straw_bed",
+        "minecraft:hay_block",
+        "minecraft:wheat"
+      ],
+      "fuel_burn_time_per_material": 150,
+      "shield": {
+        "enabled": true,
+        "durability": 180
+      }
+    },
+    {
+      "id": "cushion",
+      "ingredient": "#minecraft:cushions",
+      "zh_name": "软垫",
+      "en_name": "Cushion",
+      "armor": {
+        "pieces": [
+          "boots"
+        ],
+        "durability_multiplier": 7,
+        "enchantment_value": 15,
+        "equip_sound": "leather",
+        "toughness": 0.0,
+        "knockback_resistance": 0.1,
+        "defense": {
+          "helmet": 1,
+          "chestplate": 3,
+          "leggings": 2,
+          "boots": 1
+        }
+      },
+      "repair_ingredients": [
+        "#minecraft:cushions",
+        "#minecraft:wool"
+      ],
+      "fuel_burn_time_per_material": 150,
+      "shield": {
+        "enabled": true,
+        "durability": 220
+      }
     }
   ]
 }

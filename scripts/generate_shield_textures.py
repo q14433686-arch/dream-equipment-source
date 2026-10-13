@@ -18,6 +18,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "src/main/resources"
 MC_CLIENT_JAR = Path.home() / ".gradle/caches/fabric-loom/26.1.2/minecraft-client.jar"
+MC_26_3_DIR = Path("/tmp/minecraft-26.3")
 FAMILY_JSON = RES / "data/dream_equipment/equipment_families.json"
 OUT_DIR = RES / "assets/minecraft/textures/entity/shield/dream_equipment"
 
@@ -37,10 +38,21 @@ BLOCK_OVERRIDES = {
     "minecraft:cactus": "cactus_side",
     "minecraft:armadillo_scute": "brown_wool",
     "minecraft:turtle_scute": "turtle_egg",
+    "minecraft:resin_brick": "resin_bricks",
+    "minecraft:nautilus_shell": "prismarine",
+    "minecraft:shelf_mushroom": "shelf_mushroom_particle",
+    "minecraft:straw_bed": "straw_bed_particle",
+    "#minecraft:cushions": "white_wool",
 }
 
 
 def load_from_jar(path: str) -> Image.Image:
+    if MC_26_3_DIR.exists():
+        candidate = MC_26_3_DIR / path
+        if candidate.exists():
+            return Image.open(candidate).convert("RGBA")
+        if not MC_CLIENT_JAR.exists():
+            raise KeyError(path)
     with zipfile.ZipFile(MC_CLIENT_JAR) as zf:
         return Image.open(io.BytesIO(zf.read(path))).convert("RGBA")
 
@@ -112,7 +124,7 @@ def generate(base: Image.Image, material: Image.Image, family: str) -> Image.Ima
 
 
 def main() -> None:
-    if not MC_CLIENT_JAR.exists():
+    if not MC_CLIENT_JAR.exists() and not MC_26_3_DIR.exists():
         raise SystemExit(f"Missing Minecraft client jar: {MC_CLIENT_JAR}")
     base = load_from_jar("assets/minecraft/textures/entity/shield/shield_base_nopattern.png")
     families = json.loads(FAMILY_JSON.read_text(encoding="utf-8"))["families"]

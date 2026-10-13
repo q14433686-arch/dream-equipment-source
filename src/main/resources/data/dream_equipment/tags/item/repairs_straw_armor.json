@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:straw_bed",
+    "minecraft:hay_block",
+    "minecraft:wheat"
+  ]
+}

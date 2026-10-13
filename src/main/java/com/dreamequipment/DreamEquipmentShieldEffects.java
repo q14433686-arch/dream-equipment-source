@@ -2,6 +2,8 @@ package com.dreamequipment;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -66,6 +68,13 @@ public final class DreamEquipmentShieldEffects {
             case "bone" -> boneUndeadRepair(source, shield, rules.bone);
             case "coal" -> coalFireRepair(source, shield, rules.coal);
             case "quartz" -> quartzProjectileRepair(source, shield, rules.quartz);
+            case "poplar", "poplar_log" -> poplarLeafGust(player, source);
+            case "sulfur" -> DreamEquipmentSetEffects.eruptSulfurGeyser(player, source);
+            case "cinnabar" -> cinnabarAlchemyWard(player, source, shield);
+            case "shelf_mushroom" -> shelfMushroomBounce(player, source);
+            case "resin" -> resinStickyBlock(player, source);
+            case "nautilus_shell" -> nautilusWaterJet(player, source, shield);
+            case "cushion" -> cushionPlushBlock(player, shield);
             default -> {}
         }
     }
@@ -137,6 +146,75 @@ public final class DreamEquipmentShieldEffects {
 
     private static void quartzProjectileRepair(DamageSource source, ItemStack shield, DreamEquipmentShieldEffectRules.QuartzShield rule) {
         if (rule.enabled() && source.is(DamageTypeTags.IS_PROJECTILE)) repairShield(shield, rule.projectileRefundDamage());
+    }
+
+    private static void poplarLeafGust(ServerPlayer player, DamageSource source) {
+        ServerLevel level = (ServerLevel) player.level();
+        SimpleParticleType[] leaves = {
+            ParticleTypes.RED_POPLAR_LEAVES,
+            ParticleTypes.ORANGE_POPLAR_LEAVES,
+            ParticleTypes.YELLOW_POPLAR_LEAVES
+        };
+        for (SimpleParticleType leaf : leaves) {
+            level.sendParticles(leaf, player.getX(), player.getY() + 1.0, player.getZ(), 4, 0.35, 0.35, 0.35, 0.04);
+        }
+        player.playSound(SoundEvents.POPLAR_LEAVES_STEP, 0.9f, 1.05f);
+        if (source.getEntity() instanceof LivingEntity living && living != player && living.level().equals(player.level())) {
+            Vec3 dir = living.position().subtract(player.position());
+            if (dir.lengthSqr() < 0.0001) dir = player.getLookAngle();
+            dir = dir.normalize().scale(0.32);
+            living.push(dir.x, 0.12, dir.z);
+            living.syncVelocity = true;
+        }
+    }
+
+    private static void cinnabarAlchemyWard(ServerPlayer player, DamageSource source, ItemStack shield) {
+        Entity attacker = source.getEntity();
+        if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
+            repairShield(shield, 2);
+        }
+        if (attacker instanceof LivingEntity living && isUndeadLike(living)) {
+            repairShield(shield, 1);
+            living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 0, false, true, true));
+        }
+        player.playSound(SoundEvents.CINNABAR_HIT, 0.85f, 1.1f);
+    }
+
+    private static void shelfMushroomBounce(ServerPlayer player, DamageSource source) {
+        player.playSound(SoundEvents.SHELF_MUSHROOM_BOUNCE, 0.9f, 1.0f);
+        if (source.getEntity() instanceof LivingEntity living && living != player && living.level().equals(player.level())) {
+            Vec3 dir = living.position().subtract(player.position());
+            if (dir.lengthSqr() < 0.0001) dir = player.getLookAngle();
+            dir = dir.normalize().scale(0.55);
+            living.push(dir.x, 0.22, dir.z);
+            living.syncVelocity = true;
+        }
+    }
+
+    private static void resinStickyBlock(ServerPlayer player, DamageSource source) {
+        if (source.getEntity() instanceof LivingEntity living && living != player && living.level().equals(player.level())) {
+            living.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 80, 1, false, true, true));
+            ((ServerLevel) player.level()).sendParticles(ParticleTypes.FALLING_HONEY, living.getX(), living.getY() + 1.0, living.getZ(), 8, 0.25, 0.35, 0.25, 0.02);
+        }
+    }
+
+    private static void nautilusWaterJet(ServerPlayer player, DamageSource source, ItemStack shield) {
+        if (player.isInWaterOrRain()) {
+            repairShield(shield, 1);
+        }
+        ((ServerLevel) player.level()).sendParticles(ParticleTypes.BUBBLE_COLUMN_UP, player.getX(), player.getY() + 1.0, player.getZ(), 10, 0.35, 0.35, 0.35, 0.05);
+        if (source.getEntity() instanceof LivingEntity living && living != player && living.level().equals(player.level())) {
+            Vec3 dir = living.position().subtract(player.position());
+            if (dir.lengthSqr() < 0.0001) dir = player.getLookAngle();
+            dir = dir.normalize().scale(player.isInWater() ? 0.65 : 0.35);
+            living.push(dir.x, 0.15, dir.z);
+            living.syncVelocity = true;
+        }
+    }
+
+    private static void cushionPlushBlock(ServerPlayer player, ItemStack shield) {
+        repairShield(shield, 1);
+        player.playSound(SoundEvents.CUSHION_SIT, 0.85f, 1.05f);
     }
 
     private static boolean isUndeadLike(LivingEntity entity) {

@@ -111,6 +111,12 @@ public final class DreamEquipmentTooltips {
                 if (itemPath.endsWith("_boots")) effects.add(Component.translatable("tooltip.dream_equipment.slime_boots", trim(rules.slime.bootsSafeFallDistance())).withStyle(ChatFormatting.GREEN));
             }
         if (itemPath.equals("armadillo_shell_boots")) effects.add(Component.translatable("tooltip.dream_equipment.armadillo_terrain").withStyle(ChatFormatting.GREEN));
+        if (itemPath.equals("shelf_mushroom_boots")) effects.add(Component.translatable("tooltip.dream_equipment.shelf_mushroom_boots").withStyle(ChatFormatting.GREEN));
+        if (itemPath.equals("cushion_boots")) effects.add(Component.translatable("tooltip.dream_equipment.cushion_boots").withStyle(ChatFormatting.GREEN));
+        if ((material.equals("poplar") || material.equals("poplar_log")) && isArmor) effects.add(Component.translatable("tooltip.dream_equipment.poplar_autumn").withStyle(ChatFormatting.GOLD));
+        if (material.equals("sulfur") && isArmor) effects.add(Component.translatable("tooltip.dream_equipment.sulfur_geyser").withStyle(ChatFormatting.YELLOW));
+        if (material.equals("cinnabar") && isArmor) effects.add(Component.translatable("tooltip.dream_equipment.cinnabar_alchemy").withStyle(ChatFormatting.RED));
+        if (material.equals("resin") && isArmor) effects.add(Component.translatable("tooltip.dream_equipment.resin_sticky").withStyle(ChatFormatting.GOLD));
         if (material.equals("lapis") && isArmor) effects.add(Component.translatable("tooltip.dream_equipment.lapis_enchanting").withStyle(ChatFormatting.BLUE));
         if (material.equals("redstone") && itemPath.endsWith("_boots")) effects.add(Component.translatable("tooltip.dream_equipment.redstone_signal", rules.redstoneSignal.bootsSignal(), rules.redstoneSignal.bootsPulseTicks(), rules.redstoneSignal.fullSetSignal(), rules.redstoneSignal.fullSetPulseTicks()).withStyle(ChatFormatting.RED));
             for (DreamEquipmentSetEffectRules.WetDurabilityRule rule : rules.wetDurabilityRules) {
@@ -159,6 +165,13 @@ public final class DreamEquipmentTooltips {
         if ("bone".equals(material) && rules.bone.enabled()) effects.add(Component.translatable("tooltip.dream_equipment.shield_bone", rules.bone.undeadRefundDamage()).withStyle(ChatFormatting.GRAY));
         if ("coal".equals(material) && rules.coal.enabled()) effects.add(Component.translatable("tooltip.dream_equipment.shield_coal", rules.coal.fireRefundDamage()).withStyle(ChatFormatting.DARK_GRAY));
         if ("quartz".equals(material) && rules.quartz.enabled()) effects.add(Component.translatable("tooltip.dream_equipment.shield_quartz", rules.quartz.projectileRefundDamage()).withStyle(ChatFormatting.WHITE));
+        if ("poplar".equals(material) || "poplar_log".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_poplar").withStyle(ChatFormatting.GOLD));
+        if ("sulfur".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_sulfur").withStyle(ChatFormatting.YELLOW));
+        if ("cinnabar".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_cinnabar").withStyle(ChatFormatting.RED));
+        if ("shelf_mushroom".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_shelf_mushroom").withStyle(ChatFormatting.GREEN));
+        if ("resin".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_resin").withStyle(ChatFormatting.GOLD));
+        if ("nautilus_shell".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_nautilus_shell").withStyle(ChatFormatting.AQUA));
+        if ("cushion".equals(material)) effects.add(Component.translatable("tooltip.dream_equipment.shield_cushion").withStyle(ChatFormatting.GREEN));
         if (!effects.isEmpty()) {
             lines.add(Component.translatable("tooltip.dream_equipment.effects_header").withStyle(ChatFormatting.GOLD));
             lines.addAll(effects);

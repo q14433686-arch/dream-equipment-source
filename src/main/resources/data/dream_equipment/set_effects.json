@@ -168,6 +168,90 @@
       "condition": "always",
       "duration_ticks": 260,
       "amplifier": 0
+    },
+    {
+      "material": "poplar",
+      "effect": "minecraft:slow_falling",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "poplar",
+      "effect": "minecraft:speed",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "poplar_log",
+      "effect": "minecraft:slow_falling",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "poplar_log",
+      "effect": "minecraft:resistance",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "sulfur",
+      "effect": "minecraft:fire_resistance",
+      "condition": "in_water",
+      "duration_ticks": 160,
+      "amplifier": 0
+    },
+    {
+      "material": "cinnabar",
+      "effect": "minecraft:regeneration",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "resin",
+      "effect": "minecraft:resistance",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "nautilus_shell",
+      "effect": "minecraft:breath_of_the_nautilus",
+      "condition": "always",
+      "duration_ticks": 260,
+      "amplifier": 0
+    },
+    {
+      "material": "nautilus_shell",
+      "effect": "minecraft:dolphins_grace",
+      "condition": "in_water",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "material": "nautilus_shell",
+      "effect": "minecraft:conduit_power",
+      "condition": "in_water",
+      "duration_ticks": 160,
+      "amplifier": 0
+    },
+    {
+      "material": "straw",
+      "effect": "minecraft:speed",
+      "condition": "always",
+      "duration_ticks": 140,
+      "amplifier": 0
+    },
+    {
+      "material": "straw",
+      "effect": "minecraft:haste",
+      "condition": "dry",
+      "duration_ticks": 140,
+      "amplifier": 0
     }
   ],
   "cactus_retaliation": {
@@ -216,6 +300,11 @@
       "material": "amethyst",
       "damage_threshold": 8.0,
       "shatter_chance": 0.08
+    },
+    {
+      "material": "sulfur",
+      "damage_threshold": 6.5,
+      "shatter_chance": 0.15
     }
   ],
   "redstone_signal": {
@@ -374,6 +463,18 @@
       "cancel_chance_per_piece": 0.012,
       "shatter_damage_threshold": 5.5,
       "slowness_per_piece": 0.03
+    },
+    {
+      "material": "sulfur",
+      "cancel_chance_per_piece": 0.015,
+      "shatter_damage_threshold": 5.5,
+      "slowness_per_piece": 0.03
+    },
+    {
+      "material": "cinnabar",
+      "cancel_chance_per_piece": 0.025,
+      "shatter_damage_threshold": 7.2,
+      "slowness_per_piece": 0.1
     }
   ],
   "armadillo_boots": {
@@ -396,6 +497,20 @@
       "effect": "minecraft:haste",
       "duration_ticks": 120,
       "amplifier": 1
+    },
+    {
+      "item": "dream_equipment:nautilus_shell_spear",
+      "condition": "in_water",
+      "effect": "minecraft:dolphins_grace",
+      "duration_ticks": 120,
+      "amplifier": 0
+    },
+    {
+      "item": "dream_equipment:cinnabar_sword",
+      "condition": "always",
+      "effect": "minecraft:regeneration",
+      "duration_ticks": 100,
+      "amplifier": 0
     }
   ],
   "damage_immunities": [

@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "src/main/resources"
 MOD = "dream_equipment"
 MC_CLIENT_JAR = Path.home() / ".gradle/caches/fabric-loom/26.1.2/minecraft-client.jar"
+MC_26_3_DIR = Path("/tmp/minecraft-26.3")
 
 PLANK_TEXTURES = {
     "oak": "oak_planks",
@@ -39,6 +40,7 @@ PLANK_TEXTURES = {
     "bamboo": "bamboo_planks",
     "crimson": "crimson_planks",
     "warped": "warped_planks",
+    "poplar": "poplar_planks",
 }
 
 LOG_TEXTURES = {
@@ -54,6 +56,7 @@ LOG_TEXTURES = {
     "bamboo_block": "bamboo_block",
     "crimson_stem": "crimson_stem",
     "warped_stem": "warped_stem",
+    "poplar_log": "poplar_log",
 }
 
 # Families being tested with low-frequency, component-local plank panels.
@@ -68,8 +71,11 @@ LAYER_PATHS = [
 
 
 def load_vanilla_texture(block_name: str) -> Image.Image:
+    rel = f"assets/minecraft/textures/block/{block_name}.png"
+    if MC_26_3_DIR.exists() and (MC_26_3_DIR / rel).exists():
+        return Image.open(MC_26_3_DIR / rel).convert("RGBA")
     with zipfile.ZipFile(MC_CLIENT_JAR) as zf:
-        data = zf.read(f"assets/minecraft/textures/block/{block_name}.png")
+        data = zf.read(rel)
     return Image.open(io.BytesIO(data)).convert("RGBA")
 
 
@@ -247,16 +253,18 @@ def regenerate_layer(path: Path, texture: Image.Image, style: str, seed: int, fa
 
 
 def main() -> None:
-    if not MC_CLIENT_JAR.exists():
+    if not MC_CLIENT_JAR.exists() and not MC_26_3_DIR.exists():
         raise SystemExit(f"Missing Minecraft client jar: {MC_CLIENT_JAR}")
     count = 0
     for style, mapping in (("plank", PLANK_TEXTURES), ("log", LOG_TEXTURES)):
+        template_family = "oak" if style == "plank" else "oak_log"
         for index, (family, texture_name) in enumerate(mapping.items()):
             texture = load_vanilla_texture(texture_name)
             for layer_index, (layer_dir, pattern) in enumerate(LAYER_PATHS):
                 path = RES / f"assets/{MOD}/textures/entity/equipment/{layer_dir}" / pattern.format(family=family)
                 if not path.exists():
-                    raise SystemExit(f"Missing equipment layer: {path.relative_to(ROOT)}")
+                    template_path = RES / f"assets/{MOD}/textures/entity/equipment/{layer_dir}" / pattern.format(family=template_family)
+                    path.write_bytes(template_path.read_bytes())
                 regenerate_layer(path, texture, style, seed=(index + 1) * 23 + (layer_index + 1) * 7, family=family)
                 count += 1
     print(f"Regenerated wood/plank/log worn equipment texture interiors: files={count}")

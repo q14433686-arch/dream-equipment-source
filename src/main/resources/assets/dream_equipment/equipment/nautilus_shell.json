@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "dream_equipment:nautilus_shell"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "dream_equipment:nautilus_shell"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "dream_equipment:nautilus_shell_leggings"
+      }
+    ]
+  }
+}

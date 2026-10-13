@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:poplar_logs",
+    "minecraft:poplar_planks"
+  ]
+}

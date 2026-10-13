@@ -1,6 +1,6 @@
 # NEXT_TASK
 
-## ✅ 已完成 — Minecraft 26.3 移植与 `{UN}TACZR` 同款 CI 部署（2026-10-13）
+## ✅ 已完成 — Minecraft 26.3 移植、`{UN}TACZR` 同款 CI 部署与 26.2/26.3 新物品装备扩展（2026-10-14）
 
 ### 完成内容
 - 部署 `{UN}TACZR` 同款 CI 模板：`docs/ci/compile-check.yml`、`docs/ci/build.yml`、`docs/ci/consistency.yml`、`docs/ci/README.md` 及静态门禁脚本 `scripts/check_release_consistency.sh`。
@@ -11,6 +11,14 @@
   3. `DreamEquipmentEnchantingSupport.java` & `DreamEquipmentSetEffects.java`：`player.drop(..., false)` → `player.drop(..., false, Prediction.SERVER_ONLY)`。
   4. `DreamEquipmentSetEffects.java` & `DreamEquipmentShieldEffects.java`：`hurtMarked` → `syncVelocity`。
   5. `RedStoneWireBlockMixin.java`：`RedStoneWireBlock` → `RedstoneWireBlock`。
+- 扩展 9 个 Minecraft 26.2/26.3 新材质家族（`60 → 69` 家族，`372 → 426` 自定义物品）：
+  - `poplar`（白杨木）& `poplar_log`（白杨原木）：护甲+盾牌+三色白杨落叶特效
+  - `sulfur`（硫磺）：护甲+6 工具+盾牌，融合硫磺间歇泉热力弹射与易碎爆燃岩石机制
+  - `cinnabar`（朱砂）：护甲+6 工具+盾牌，丹砂辟邪（再生+持续净除中毒/凋零+魔法/亡灵护盾）
+  - `shelf_mushroom`（层架菌）：层架菌靴+盾（弹性免伤弹跳，无时间自耗）
+  - `resin`（树脂）：护甲+剑/矛+盾（受击/格挡琥珀粘滞缓慢 II）
+  - `nautilus_shell`（鹦鹉螺壳）：护甲+矛+盾（原版 `breath_of_the_nautilus` 鹦鹉螺之息 + 水中推进）
+  - `straw`（草编）& `cushion`（软垫）：草帽/草编蓑衣/草编护腿/草鞋/草编盾 & 软垫缓冲靴/软垫盾
 - 详见 `docs/reports/PORTING_26_3_REPORT.md`。
 
 ## ✅ 已完成 — 石质/矿物穿戴贴图批量重做（Round 57，2026-07-06）

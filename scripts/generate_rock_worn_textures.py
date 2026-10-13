@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "src/main/resources"
 MOD = "dream_equipment"
 MC_CLIENT_JAR = Path.home() / ".gradle/caches/fabric-loom/26.1.2/minecraft-client.jar"
+MC_26_3_DIR = Path("/tmp/minecraft-26.3")
 
 LAYER_DIRS = ["humanoid", "humanoid_leggings", "humanoid_baby"]
 
@@ -219,6 +220,27 @@ FAMILY_CONFIG: dict[str, dict[str, Any]] = {
         "light_q": 0.88,
         "feature": "cobble_seams",
     },
+    "sulfur": {
+        "block_texture": "sulfur",
+        "correction": (0, 0, 0),
+        "edge_q": 0.06,
+        "dark_q": 0.14,
+        "light_q": 0.90,
+    },
+    "cinnabar": {
+        "block_texture": "cinnabar",
+        "correction": (0, 0, 0),
+        "edge_q": 0.05,
+        "dark_q": 0.12,
+        "light_q": 0.88,
+    },
+    "resin": {
+        "block_texture": "resin_bricks",
+        "correction": (0, 0, 0),
+        "edge_q": 0.05,
+        "dark_q": 0.12,
+        "light_q": 0.90,
+    },
 }
 
 # ---------------------------------------------------------------------------
@@ -248,8 +270,11 @@ def shade(c: tuple[int, int, int], factor: float) -> tuple[int, int, int]:
 
 
 def load_block_texture(name: str) -> Image.Image:
+    rel = f"assets/minecraft/textures/block/{name}.png"
+    if MC_26_3_DIR.exists() and (MC_26_3_DIR / rel).exists():
+        return Image.open(MC_26_3_DIR / rel).convert("RGBA")
     with zipfile.ZipFile(MC_CLIENT_JAR) as zf:
-        data = zf.read(f"assets/minecraft/textures/block/{name}.png")
+        data = zf.read(rel)
     return Image.open(io.BytesIO(data)).convert("RGBA")
 
 
@@ -257,9 +282,11 @@ def build_palette(
     img: Image.Image,
 ) -> list[tuple[int, int, int]]:
     """Return opaque pixels sorted by luminance."""
+    rgba = img.convert("RGBA")
+    data = rgba.get_flattened_data() if hasattr(rgba, "get_flattened_data") else rgba.getdata()
     colors = [
         (r, g, b)
-        for r, g, b, a in img.convert("RGBA").get_flattened_data()
+        for r, g, b, a in data
         if a > 0
     ]
     return sorted(colors, key=lambda c: luminance(*c))
@@ -718,7 +745,7 @@ def main() -> None:
                     help="Write regenerated textures; without this flag runs in check mode.")
     args = ap.parse_args()
 
-    if not MC_CLIENT_JAR.exists():
+    if not MC_CLIENT_JAR.exists() and not MC_26_3_DIR.exists():
         raise SystemExit(f"Minecraft client jar not found: {MC_CLIENT_JAR}")
 
     written = 0
@@ -731,15 +758,22 @@ def main() -> None:
         for layer_dir in LAYER_DIRS:
             if layer_dir == "humanoid_baby":
                 filename = f"{family}.png"
+                template_filename = "cobblestone.png"
             elif layer_dir == "humanoid_leggings":
                 filename = f"{family}_leggings.png"
+                template_filename = "cobblestone_leggings.png"
             else:
                 filename = f"{family}.png"
+                template_filename = "cobblestone.png"
 
             path = RES / f"assets/{MOD}/textures/entity/equipment/{layer_dir}/{filename}"
             if not path.exists():
-                # humanoid_baby uses same filename as humanoid; skip if missing
-                continue
+                if args.write:
+                    template_path = RES / f"assets/{MOD}/textures/entity/equipment/{layer_dir}/{template_filename}"
+                    path.write_bytes(template_path.read_bytes())
+                else:
+                    diffs.append(str(path.relative_to(ROOT)))
+                    continue
 
             if args.write:
                 regenerate_layer(path, block, palette, cfg, layer_dir)

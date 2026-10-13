@@ -127,6 +127,11 @@ def shield_particle_texture(ingredient):
         'minecraft:paper': 'minecraft:block/white_wool',
         'minecraft:armadillo_scute': 'minecraft:block/brown_wool',
         'minecraft:turtle_scute': 'minecraft:block/turtle_egg',
+        'minecraft:resin_brick': 'minecraft:block/resin_bricks',
+        'minecraft:nautilus_shell': 'minecraft:block/prismarine',
+        'minecraft:shelf_mushroom': 'minecraft:block/shelf_mushroom_particle',
+        'minecraft:straw_bed': 'minecraft:block/straw_bed_particle',
+        '#minecraft:cushions': 'minecraft:block/white_wool',
     }
     if ingredient in direct:
         return direct[ingredient]
@@ -321,6 +326,19 @@ def build_outputs():
         'tooltip.dream_equipment.shield_bone': '盾牌：格挡亡灵攻击时返还 %s 耐久损耗',
         'tooltip.dream_equipment.shield_coal': '盾牌：格挡火焰伤害时返还 %s 耐久损耗',
         'tooltip.dream_equipment.shield_quartz': '盾牌：格挡弹射物时返还 %s 耐久损耗',
+        'tooltip.dream_equipment.poplar_autumn': '白杨秋叶：整套移动或缓降时飘落三色白杨落叶',
+        'tooltip.dream_equipment.sulfur_geyser': '硫磺间歇泉：整套净除反胃与中毒；火焰/爆炸或水中受击喷发间歇泉弹飞周围敌人',
+        'tooltip.dream_equipment.cinnabar_alchemy': '丹砂辟邪：整套持续净除中毒与凋零效果',
+        'tooltip.dream_equipment.shelf_mushroom_boots': '层架菌靴：≤8 格摔落免伤并弹性弹跳（不随时间自耗耐久）',
+        'tooltip.dream_equipment.resin_sticky': '琥珀粘滞：近战受击时使攻击者获得缓慢 II',
+        'tooltip.dream_equipment.cushion_boots': '软垫缓冲：减免 40% 摔落伤害并缓和受击冲击',
+        'tooltip.dream_equipment.shield_poplar': '盾牌：成功格挡时卷起白杨秋叶并推开攻击者',
+        'tooltip.dream_equipment.shield_sulfur': '盾牌：格挡时喷发硫磺间歇泉，向上弹飞近战攻击者并附加反胃',
+        'tooltip.dream_equipment.shield_cinnabar': '盾牌：格挡魔法或亡灵攻击返还耐久，并使亡灵攻击者虚弱',
+        'tooltip.dream_equipment.shield_shelf_mushroom': '盾牌：成功格挡时以层架菌弹性弹开攻击者',
+        'tooltip.dream_equipment.shield_resin': '盾牌：成功格挡近战时使攻击者陷入琥珀粘滞（缓慢 II）',
+        'tooltip.dream_equipment.shield_nautilus_shell': '盾牌：水中成功格挡返还耐久并喷射涡流推开攻击者',
+        'tooltip.dream_equipment.shield_cushion': '盾牌：软垫缓冲吸收冲击并返还部分格挡耐久损耗',
         'tooltip.dream_equipment.tool.spear': '矛'
     })
     en.update({
@@ -370,6 +388,19 @@ def build_outputs():
         'tooltip.dream_equipment.shield_bone': 'Shield: blocking undead attacks refunds %s durability loss',
         'tooltip.dream_equipment.shield_coal': 'Shield: blocking fire damage refunds %s durability loss',
         'tooltip.dream_equipment.shield_quartz': 'Shield: blocking projectiles refunds %s durability loss',
+        'tooltip.dream_equipment.poplar_autumn': 'Autumn Leaves: full set sheds drifting poplar leaves while moving or gliding',
+        'tooltip.dream_equipment.sulfur_geyser': 'Sulfur Geyser: cleanses nausea & poison; fire, explosion, or underwater hits erupt a geyser launching foes',
+        'tooltip.dream_equipment.cinnabar_alchemy': 'Cinnabar Ward: full set continuously cleanses Poison and Wither',
+        'tooltip.dream_equipment.shelf_mushroom_boots': 'Shelf Mushroom Boots: ≤8 block falls deal no damage and bounce (no passive decay)',
+        'tooltip.dream_equipment.resin_sticky': 'Sticky Resin: coats melee attackers with Slowness II',
+        'tooltip.dream_equipment.cushion_boots': 'Plush Cushion: reduces fall damage by 40% and softens impact',
+        'tooltip.dream_equipment.shield_poplar': 'Shield: stirs autumn poplar leaves and nudges attackers on block',
+        'tooltip.dream_equipment.shield_sulfur': 'Shield: erupts a sulfur geyser on block, launching melee attackers upward with nausea',
+        'tooltip.dream_equipment.shield_cinnabar': 'Shield: refunds durability against magic/undead attacks and weakens undead attackers',
+        'tooltip.dream_equipment.shield_shelf_mushroom': 'Shield: rebounds melee attackers with shelf mushroom elasticity',
+        'tooltip.dream_equipment.shield_resin': 'Shield: coats blocked melee attackers in sticky resin (Slowness II)',
+        'tooltip.dream_equipment.shield_nautilus_shell': 'Shield: refunds durability in water and jets attackers backward',
+        'tooltip.dream_equipment.shield_cushion': 'Shield: plush cushion absorbs shock and refunds block wear',
         'tooltip.dream_equipment.tool.spear': 'Spear'
     })
     outputs[f'src/main/resources/assets/{MOD}/lang/zh_cn.json']=ordered(dict(sorted(zh.items())))

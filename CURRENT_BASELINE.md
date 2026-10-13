@@ -12,22 +12,27 @@
   - Java: `25+`
   - Gradle wrapper: `9.5.1`
   - Loom: `1.17.20`
-- Current status: Minecraft 26.3 port & `{UN}TACZR`-style CI deployment pass completed (2026-10-13). All 60 families / 372 custom items (including 60 shields), data-driven set effects, shield effects, redstone pulses, lapis enchanting support, and `DataComponents.COOKING_FUEL` furnace fuel registrations are migrated to Minecraft 26.3. See `docs/reports/PORTING_26_3_REPORT.md` and `docs/ci/README.md`.
+- Current status: Minecraft 26.3 port, `{UN}TACZR`-style CI deployment, and Minecraft 26.2/26.3 material expansion completed (2026-10-14). All 69 families / 426 custom items (including 69 shields and 9 new 26.2/26.3 families: `poplar`, `poplar_log`, `sulfur`, `cinnabar`, `shelf_mushroom`, `resin`, `nautilus_shell`, `straw`, `cushion`), data-driven set effects, shield effects, redstone pulses, lapis enchanting support, and `DataComponents.COOKING_FUEL` furnace fuel registrations are migrated to Minecraft 26.3. See `docs/reports/PORTING_26_3_REPORT.md` and `docs/ci/README.md`.
 - Current output files:
   - `release_output/dream-equipment-0.1.0.jar`
   - `release_output/dream-equipment-source-current-20260706.zip`
 
 ## Implemented content
 
-Current item count: 372.
+Current item count: 426 (across 69 families, including 69 shields).
 
 - Emerald tools + armor.
-- 12 plank-variant armor families: oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, pale oak, bamboo, crimson, warped.
+- 13 plank-variant armor families: oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, pale oak, bamboo, crimson, warped, poplar.
 - Stone armor.
 - Cobblestone armor.
-- Curated stone/rock variants and related tools where declared by JSON: mossy cobblestone, cobbled deepslate, blackstone armor, sandstone, red sandstone, end stone, tuff, calcite, granite, diorite, andesite, basalt, smooth basalt, dripstone block, netherrack.
+- Curated stone/rock/mineral variants and related tools where declared by JSON: mossy cobblestone, cobbled deepslate, blackstone armor, sandstone, red sandstone, end stone, tuff, calcite, granite, diorite, andesite, basalt, smooth basalt, dripstone block, netherrack, sulfur, cinnabar.
 - Cactus armor + spear.
 - Armadillo shell boots.
+- Shelf mushroom boots + shield.
+- Cushion boots + shield (`#minecraft:cushions`).
+- Straw light armor (`草帽`/`草编蓑衣`/`草编护腿`/`草鞋`) + shield.
+- Resin armor + sword/spear + shield.
+- Nautilus shell armor + spear + shield.
 - Bone armor + weapons.
 - Paper armor.
 - Glass armor + weapon-only tools.
@@ -40,8 +45,8 @@ Current item count: 372.
 - Slime armor.
 - Coal armor.
 - Turtle shell set using vanilla `minecraft:turtle_helmet` plus custom chestplate/leggings/boots.
-- Log/stem/bamboo-block armor families.
-- Shields for all 56 Dream Equipment material families plus vanilla-material copper, golden, diamond, and netherite shields.
+- Log/stem/bamboo-block armor families (including `poplar_log`).
+- Shields for all 65 Dream Equipment material families plus vanilla-material copper, golden, diamond, and netherite shields (69 shields total).
 
 All declared custom items have item definitions, models, textures, recipes, lang keys, equipment definitions where needed, and repair/tool/tag resources as managed by `scripts/generate_equipment_resources.py`.
 
@@ -53,9 +58,9 @@ All declared custom items have item definitions, models, textures, recipes, lang
 
 ## Current JSON/resource state
 
-- `src/main/resources/data/dream_equipment/equipment_families.json`: 60 families / 372 items.
-- `src/main/resources/data/dream_equipment/set_effects.json`: 24 passive effect entries / 4 brittle entries, plus wet durability/repair, redstone signal, armadillo terrain speed, held effects, stone armor physics, brittle weapons, damage immunities, and shield effects.
-- `scripts/generate_equipment_resources.py` check mode reports `equipment resources in sync — files=1369`.
+- `src/main/resources/data/dream_equipment/equipment_families.json`: 69 families / 426 items.
+- `src/main/resources/data/dream_equipment/set_effects.json`: 36 passive effect entries / 5 brittle entries, plus wet durability/repair, redstone signal, armadillo terrain speed, held effects, stone armor physics, brittle weapons, damage immunities, and shield effects.
+- `scripts/generate_equipment_resources.py` check mode reports `equipment resources in sync — files=1562`.
 
 ## Reference boundary
 

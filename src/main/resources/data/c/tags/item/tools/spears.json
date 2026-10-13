@@ -24,6 +24,10 @@
     "dream_equipment:basalt_spear",
     "dream_equipment:smooth_basalt_spear",
     "dream_equipment:dripstone_block_spear",
-    "dream_equipment:netherrack_spear"
+    "dream_equipment:netherrack_spear",
+    "dream_equipment:sulfur_spear",
+    "dream_equipment:cinnabar_spear",
+    "dream_equipment:resin_spear",
+    "dream_equipment:nautilus_shell_spear"
   ]
 }

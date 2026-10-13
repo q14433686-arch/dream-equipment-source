@@ -78,8 +78,26 @@
 
 ---
 
-## 5. CI 部署与门禁自检结果
+## 5. Minecraft 26.2 / 26.3 新方块与新物品内容适配（`60 → 69` 家族，`372 → 426` 物品）
+
+围绕 Minecraft 26.2 / 26.3 新增的硫磺洞穴（Sulfur Caves）、白杨木（Poplar）、朱砂（Cinnabar）、层架菌（Shelf Mushroom）、草床（Straw Bed）与 16 色软垫（Cushions）以及生态材料树脂（Resin）与鹦鹉螺壳（Nautilus Shell），新增 **9 个装备家族、54 件新装备**：
+
+| 家族 ID | 核心材料 | 新增装备（件数） | 26.3 专属机制与套装/盾牌特性 |
+|---|---|---|---|
+| `poplar` | `minecraft:poplar_planks` | 头盔、胸甲、护腿、靴子、盾牌（5） | 整套缓降 I + 速度 I；移动/缓降飘落三色白杨秋叶粒子（`RED/ORANGE/YELLOW_POPLAR_LEAVES`）；格挡卷起落叶气流推开攻击者；可作熔炉燃料（300 tick/单位） |
+| `poplar_log` | `minecraft:poplar_log` | 头盔、胸甲、护腿、靴子、盾牌（5） | 整套缓降 I + 抗性提升 I；移动/缓降飘落三色白杨秋叶粒子；支持 `#minecraft:poplar_logs` 修复；可作熔炉燃料（300 tick/单位） |
+| `sulfur` | `minecraft:sulfur` | 4 护甲 + 剑/镐/斧/锹/锄/矛 + 盾牌（11） | **间歇泉热力弹射 + 易碎爆燃岩石融合流**：整套水中抗火并净除反胃/中毒；受火焰/爆炸、水中受击、护甲碎裂或举盾格挡时喷发 `SULFUR_BUBBLES` + `GEYSER_ERUPTION_START` 硫磺间歇泉，向上弹飞近战敌人并附加反胃与缓慢；支持 `potent_sulfur` / `sulfur_spike` 修复；可作高热燃料（400 tick/单位） |
+| `cinnabar` | `minecraft:cinnabar` | 4 护甲 + 剑/镐/斧/锹/锄/矛 + 盾牌（11） | **丹砂辟邪流**：高附魔（18）石质护甲与工具，整套常驻生命恢复 I 并持续净除中毒与凋零；手持朱砂剑获得生命恢复 I；朱砂盾牌格挡魔法/亡灵伤害返还耐久并使亡灵虚弱 |
+| `shelf_mushroom` | `minecraft:shelf_mushroom` | 层架菌靴子、层架菌盾牌（2） | 还原 26.3 `ShelfMushroomBlock` 弹性机制：≤8 格摔落免伤并播放 `SHELF_MUSHROOM_BOUNCE` 弹性弹跳（>8 格减免 50% 摔落伤害，无粘液套的时间自耗）；盾牌格挡弹反近战攻击者 |
+| `resin` | `minecraft:resin_brick` | 4 护甲 + 剑/矛 + 盾牌（7） | **琥珀粘滞流**：整套常驻抗性提升 I；近战受击或举盾格挡时为攻击者附加 `Slowness II` 并伴随 `FALLING_HONEY` 粒子 |
+| `nautilus_shell` | `minecraft:nautilus_shell` | 4 护甲 + 矛 + 盾牌（6） | **深海螺壳流**：整套常驻 26.x 原版 `minecraft:breath_of_the_nautilus`（鹦鹉螺之息）及水中海豚的恩惠 I + 潮涌能量 I；手持鹦鹉螺壳矛在水中获得海豚的恩惠；盾牌水中格挡返还耐久并喷射水流推开目标 |
+| `straw` | `minecraft:straw_bed` | 草帽、草编蓑衣、草编护腿、草鞋、草编盾牌（5） | **草编轻装**：整套常驻速度 I，干燥环境下额外获得急迫 I；支持草床/干草块/小麦修复；可作燃料（150 tick/单位） |
+| `cushion` | `#minecraft:cushions` | 软垫靴子、软垫盾牌（2） | **软垫缓冲**：支持全部 16 色 `#minecraft:cushions` 合成与修复；靴子提供 0.1 击退抗性并减免 40% 摔落伤害（播放 `CUSHION_SIT` 音效）；盾牌格挡缓和冲击并返还 1 点耐久 |
+
+---
+
+## 6. CI 部署与门禁自检结果
 
 - 已新增 `.gitignore`、`docs/ci/README.md`、`docs/ci/compile-check.yml`、`docs/ci/build.yml`、`docs/ci/consistency.yml` 与 `scripts/check_release_consistency.sh`。
 - 已为 `scripts/validate_dream_equipment_assets.py` 补充无 `Pillow` 环境下的标准 PNG `IHDR` 尺寸解析回退与 26.3 源码断言支持。
-- 本地运行 `bash scripts/check_release_consistency.sh --strict` 及全部 5 个 Python 校验脚本全部通过，且对 `src/main/java` 全部 19 个源文件针对 Minecraft 26.3 与 Fabric API `0.160.7+26.3` 源码树的导入/符号扫描缺失数为 `0`。
+- 本地运行 `bash scripts/check_release_consistency.sh --strict` 及全部 5 个 Python 校验脚本全部通过（`families=69, items=426`），且对 `src/main/java` 全部 19 个源文件针对 Minecraft 26.3 与 Fabric API `0.160.7+26.3` 源码树的导入/符号扫描缺失数为 `0`。

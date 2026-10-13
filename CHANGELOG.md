@@ -18,16 +18,24 @@
   - `DreamEquipmentEnchantingSupport.java` & `DreamEquipmentSetEffects.java`：适配 26.3 移除二参 `Player#drop(ItemStack, boolean)` 的变更，改为 `player.drop(stack, false, Prediction.SERVER_ONLY)`。
   - `DreamEquipmentSetEffects.java` & `DreamEquipmentShieldEffects.java`：适配 26.3 `Entity#hurtMarked` 重命名为 `Entity#syncVelocity`。
   - `RedStoneWireBlockMixin.java`：适配 26.3 `net.minecraft.world.level.block.RedStoneWireBlock` 重命名为 `net.minecraft.world.level.block.RedstoneWireBlock`。
+- **Minecraft 26.2 / 26.3 新方块与新物品装备扩展（60 → 69 家族，372 → 426 物品）**：
+  - **白杨木与白杨原木（`poplar`、`poplar_log`）**：补齐第 13 种主世界木材的 4 件套护甲 + 盾牌（含 300 tick/单位熔炉燃料值），整套获得缓降 + 速度/抗性提升，并在移动或缓降时飘落三色白杨落叶粒子（`RED/ORANGE/YELLOW_POPLAR_LEAVES`），格挡时激起落叶气流推开攻击者。
+  - **硫磺（`sulfur`）**：融合「间歇泉热力弹射流」与「易碎爆燃岩石流」，新增 4 件套护甲 + 6 件石质工具（剑/镐/斧/锹/锄/矛）+ 盾牌（400 tick/单位熔炉燃料值），整套水中获得抗火并持续净除反胃与中毒；受火焰/爆炸、水中受击、护甲碎裂或举盾格挡时触发 `SULFUR_BUBBLES` + `GEYSER_ERUPTION_START` 硫磺间歇泉喷发，向上弹飞近战攻击者并附加反胃与缓慢。
+  - **朱砂（`cinnabar`）**：「丹砂辟邪流」4 件套护甲 + 6 件石质工具 + 盾牌，纳入石质护甲物理（`stone_armor_physics`），整套获得生命恢复并持续净除中毒与凋零效果；手持朱砂剑获得生命恢复；朱砂盾牌格挡魔法或亡灵攻击返还耐久并使亡灵攻击者虚弱。
+  - **层架菌（`shelf_mushroom`）**：新增 `shelf_mushroom_boots` + `shelf_mushroom_shield`，还原 26.3 原版层架菌弹性机制，≤8 格摔落免伤并以 `SHELF_MUSHROOM_BOUNCE` 音效弹跳（高于 8 格减免 50% 摔落伤害，且不随时间自耗耐久），盾牌格挡可弹开近战攻击者。
+  - **琥珀树脂（`resin`）**：新增 4 件套护甲 + 树脂剑 + 树脂矛 + 树脂盾牌，整套获得抗性提升，近战受击或举盾格挡时使攻击者陷入琥珀粘滞（`Slowness II` + `FALLING_HONEY` 粒子）。
+  - **深海鹦鹉螺壳（`nautilus_shell`）**：新增 4 件套护甲 + 铁级鹦鹉螺壳矛 + 盾牌，整套赋予 26.x 原版 `minecraft:breath_of_the_nautilus`（鹦鹉螺之息）及水中海豚的恩惠 + 潮涌能量，盾牌水中格挡返还耐久并喷射水流推开敌人。
+  - **草编与软垫（`straw`、`cushion`）**：基于 26.3 新增草床（`minecraft:straw_bed`）与 16 色软垫标签（`#minecraft:cushions`），新增趣味轻甲「草帽 / 草编蓑衣 / 草编护腿 / 草鞋 / 草编盾牌」（晴日急迫 + 速度）以及「软垫靴子 / 软垫盾牌」（减免 40% 摔落伤害、播放 `CUSHION_SIT` 缓冲音效并返还格挡损耗）。
 - 新增移植报告 `docs/reports/PORTING_26_3_REPORT.md`。
 
 ### Validation
 
 - `bash scripts/check_release_consistency.sh --strict` — PASS.
-- `python3 scripts/generate_equipment_resources.py` — PASS, files=1369.
-- `python3 scripts/validate_equipment_families_json.py` — PASS, families=60, items=372.
-- `python3 scripts/validate_set_effects_json.py` — PASS, passive=24, brittle=4.
-- `python3 scripts/audit_equipment_balance.py` — PASS, families=60, entries=372.
-- `python3 scripts/validate_dream_equipment_assets.py` — PASS, items=312, materials=56.
+- `python3 scripts/generate_equipment_resources.py` — PASS, files=1562.
+- `python3 scripts/validate_equipment_families_json.py` — PASS, families=69, items=426.
+- `python3 scripts/validate_set_effects_json.py` — PASS, passive=36, brittle=5.
+- `python3 scripts/audit_equipment_balance.py` — PASS, families=69, entries=426.
+- `python3 scripts/validate_dream_equipment_assets.py` — PASS, items=357, materials=65.
 
 ## 0.1.0 — 2026-07-06 — 石质/矿物穿戴贴图批量重做（Round 57）
 
