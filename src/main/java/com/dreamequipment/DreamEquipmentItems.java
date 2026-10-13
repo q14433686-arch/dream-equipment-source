@@ -12,11 +12,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.ShieldItem;
@@ -92,9 +89,9 @@ public final class DreamEquipmentItems {
             switch (type) {
                 case "sword" -> registerTool(name, new Item.Properties().sword(toolMaterial, 3.0f, -2.4f));
                 case "pickaxe" -> registerTool(name, new Item.Properties().pickaxe(toolMaterial, 1.0f, -2.8f));
-                case "axe" -> registerTool(name, settings -> new AxeItem(toolMaterial, 5.0f, -3.0f, settings));
-                case "shovel" -> registerTool(name, settings -> new ShovelItem(toolMaterial, 1.5f, -3.0f, settings));
-                case "hoe" -> registerTool(name, settings -> new HoeItem(toolMaterial, -3.0f, 0.0f, settings));
+                case "axe" -> registerTool(name, new Item.Properties().axe(toolMaterial, 5.0f, -3.0f));
+                case "shovel" -> registerTool(name, new Item.Properties().shovel(toolMaterial, 1.5f, -3.0f));
+                case "hoe" -> registerTool(name, new Item.Properties().hoe(toolMaterial, -3.0f, 0.0f));
                 case "spear" -> registerTool(name, new Item.Properties().spear(toolMaterial, 1.05f, 1.075f, 0.5f, 3.0f, 10.0f, 6.5f, 5.1f, 10.0f, 4.6f));
                 default -> throw new IllegalArgumentException("Unknown tool type: " + type);
             }

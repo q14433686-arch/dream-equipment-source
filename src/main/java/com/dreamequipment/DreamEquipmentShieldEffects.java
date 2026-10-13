@@ -114,7 +114,7 @@ public final class DreamEquipmentShieldEffects {
         if (direction.lengthSqr() < 0.0001) direction = player.getLookAngle();
         direction = direction.normalize().scale(rule.knockbackStrength());
         living.push(direction.x, rule.verticalBoost(), direction.z);
-        living.hurtMarked = true;
+        living.syncVelocity = true;
     }
 
     private static void obsidianStability(ServerPlayer player, DamageSource source, ItemStack shield, DreamEquipmentShieldEffectRules.ObsidianShield rule) {

@@ -34,10 +34,10 @@ JAVA_HOME=/tmp/herbcraft-jdk25/jdk-25 bash ./gradlew --no-daemon build --rerun-t
 
 ## Current project understanding
 
-- Target stack: Minecraft `26.1.2`, Fabric Loader `0.19.3`, Fabric API `0.152.1+26.1.2`, Java `25+`, Loom declared `1.16-SNAPSHOT` / resolved `1.16.3`.
+- Target stack: Minecraft `26.3`, Fabric Loader `0.19.5`, Fabric API `0.160.7+26.3`, Java `25+`, Loom `1.17.20`, Gradle `9.5.1`.
 - Current item count: **372** custom items across **60** JSON-defined equipment families (including 60 shields).
 - JSON owns equipment family stats/content, set-effect values, shield effects, repair ingredients, and fuel burn time values.
-- Java owns loaders, registration, mixins, events, UI/tooltips, redstone integration, enchanting support, shield rendering, fuel values, and validation-facing mechanics.
+- Java owns loaders, registration, mixins, events, UI/tooltips, redstone integration, enchanting support, shield rendering, `DataComponents.COOKING_FUEL` fuel values, and validation-facing mechanics.
 - Resource generation is deterministic through `scripts/generate_equipment_resources.py`; check mode reports `1369` managed files in sync.
 
 ## Validation executed

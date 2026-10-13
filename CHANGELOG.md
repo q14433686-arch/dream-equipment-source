@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.1.0-FIX — 2026-10-13 — 移植至 Minecraft 26.3 并部署 `{UN}TACZR` 同款 CI 门禁
+
+### Changed
+
+- **CI 与一致性门禁先行部署**：
+  - 新增 `docs/ci/compile-check.yml`、`docs/ci/build.yml`、`docs/ci/consistency.yml` 与 `docs/ci/README.md`，对齐 `{UN}TACZR`（`TaCZ_Refabricated_Unofficial`）与 `chiseled-enchanting-table-26.1.2-source` 的 CI 架构。
+  - 新增 `scripts/check_release_consistency.sh`（支持 `--strict` 模式），统一校验 `gradle.properties`、`build.gradle`、`fabric.mod.json`、`dream_equipment.mixins.json`、Minecraft 26.3 API 源码不变量及全部 5 个 Python 资产/JSON/数值平衡审计脚本。
+  - 更新 `scripts/validate_dream_equipment_assets.py`：新增无 `Pillow` 环境下的标准 PNG `IHDR` 头部尺寸解析回退，并支持 26.3 的 `DefaultItemComponentEvents.MODIFY` / `DataComponents.COOKING_FUEL` 与 `Item.Properties#axe` / `#shovel` / `#hoe` 检查。
+  - 新增 `.gitignore`。
+- **依赖与构建矩阵升级至 Minecraft 26.3**：
+  - `gradle.properties`：`minecraft_version=26.3`、`loader_version=0.19.5`、`loom_version=1.17.20`、`fabric_api_version=0.160.7+26.3`（Gradle Wrapper `9.5.1`、Java `25`）。
+  - `src/main/resources/fabric.mod.json`：更新 `fabricloader >=0.19.5`、`minecraft 26.3`、`fabric-api >=0.160.7+26.3`。
+- **Minecraft 26.3 破坏性 API 适配**：
+  - `DreamEquipmentItems.java`：移除 26.3 已删除的 `AxeItem`、`ShovelItem`、`HoeItem` 子类，改为直接使用 `new Item.Properties().axe(toolMaterial, 5.0f, -3.0f)`、`.shovel(toolMaterial, 1.5f, -3.0f)`、`.hoe(toolMaterial, -3.0f, 0.0f)`（底层自动挂载 26.3 新增的 `DataComponents.BLOCK_TRANSFORMER`）。
+  - `DreamEquipmentFuelValues.java`：适配 Fabric API `0.160.7+26.3` 移除 `FuelValueEvents` 的变更，改为通过 `DefaultItemComponentEvents.MODIFY` 为可燃护甲与盾牌设置 26.3 原版 `DataComponents.COOKING_FUEL`（`CookingFuel` + `ResolvableInt.Constant` + `ContextFloatProviders.COOKING_DEFAULT_SPEED_MULTIPLIER`）。
+  - `DreamEquipmentEnchantingSupport.java` & `DreamEquipmentSetEffects.java`：适配 26.3 移除二参 `Player#drop(ItemStack, boolean)` 的变更，改为 `player.drop(stack, false, Prediction.SERVER_ONLY)`。
+  - `DreamEquipmentSetEffects.java` & `DreamEquipmentShieldEffects.java`：适配 26.3 `Entity#hurtMarked` 重命名为 `Entity#syncVelocity`。
+  - `RedStoneWireBlockMixin.java`：适配 26.3 `net.minecraft.world.level.block.RedStoneWireBlock` 重命名为 `net.minecraft.world.level.block.RedstoneWireBlock`。
+- 新增移植报告 `docs/reports/PORTING_26_3_REPORT.md`。
+
+### Validation
+
+- `bash scripts/check_release_consistency.sh --strict` — PASS.
+- `python3 scripts/generate_equipment_resources.py` — PASS, files=1369.
+- `python3 scripts/validate_equipment_families_json.py` — PASS, families=60, items=372.
+- `python3 scripts/validate_set_effects_json.py` — PASS, passive=24, brittle=4.
+- `python3 scripts/audit_equipment_balance.py` — PASS, families=60, entries=372.
+- `python3 scripts/validate_dream_equipment_assets.py` — PASS, items=312, materials=56.
+
 ## 0.1.0 — 2026-07-06 — 石质/矿物穿戴贴图批量重做（Round 57）
 
 ### Changed

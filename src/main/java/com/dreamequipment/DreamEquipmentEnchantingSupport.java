@@ -2,6 +2,7 @@ package com.dreamequipment;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -12,7 +13,7 @@ public final class DreamEquipmentEnchantingSupport {
     public static void refundLapisAndDamageArmor(ServerPlayer player, int consumedLapis) {
         if (consumedLapis <= 0 || !hasLapisArmor(player)) return;
         ItemStack refund = new ItemStack(Items.LAPIS_LAZULI, consumedLapis);
-        if (!player.addItem(refund)) player.drop(refund, false);
+        if (!player.addItem(refund)) player.drop(refund, false, Prediction.SERVER_ONLY);
         damageLapisArmor(player, consumedLapis * 12);
     }
 

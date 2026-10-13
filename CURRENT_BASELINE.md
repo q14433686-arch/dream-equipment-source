@@ -2,18 +2,17 @@
 
 ## Current baseline
 
-- Date: 2026-07-06
+- Date: 2026-10-13
 - Project: `dream-equipment` / `dream_equipment`
 - Scope: standalone Fabric mod project, separate from `yansheng-source`.
 - Target environment:
-  - Minecraft: `26.1.2`
-  - Fabric Loader: `0.19.3`
-  - Fabric API: `0.152.1+26.1.2` (`0.152.0+26.1.2` is not published)
+  - Minecraft: `26.3`
+  - Fabric Loader: `0.19.5`
+  - Fabric API: `0.160.7+26.3`
   - Java: `25+`
-  - Local validation JDK used this pass: Temurin `25.0.3+9-LTS` at `/tmp/herbcraft-jdk25/jdk-25`
-  - Gradle wrapper: `9.4.1`
-  - Loom: declared `1.16-SNAPSHOT`, resolved as Fabric Loom `1.16.3`
-- Current status: environment setup/report-brief pass completed (Round 56, 2026-07-06). No gameplay Java or generated gameplay/resource content was changed this pass. This is a continuation of the same content state as 2026-07-03 (Round 55 vanilla material shields).
+  - Gradle wrapper: `9.5.1`
+  - Loom: `1.17.20`
+- Current status: Minecraft 26.3 port & `{UN}TACZR`-style CI deployment pass completed (2026-10-13). All 60 families / 372 custom items (including 60 shields), data-driven set effects, shield effects, redstone pulses, lapis enchanting support, and `DataComponents.COOKING_FUEL` furnace fuel registrations are migrated to Minecraft 26.3. See `docs/reports/PORTING_26_3_REPORT.md` and `docs/ci/README.md`.
 - Current output files:
   - `release_output/dream-equipment-0.1.0.jar`
   - `release_output/dream-equipment-source-current-20260706.zip`

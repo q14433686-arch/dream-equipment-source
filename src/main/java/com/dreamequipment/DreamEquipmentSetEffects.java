@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -219,7 +220,7 @@ public final class DreamEquipmentSetEffects {
             Item item = BuiltInRegistries.ITEM.getValue(Identifier.parse(family.ingredient()));
             if (item == null || item == Items.AIR) return;
             ItemStack returned = new ItemStack(item, 1 + player.getRandom().nextInt(2));
-            if (!player.addItem(returned)) player.drop(returned, false);
+            if (!player.addItem(returned)) player.drop(returned, false, Prediction.SERVER_ONLY);
             return;
         }
     }
@@ -237,7 +238,7 @@ public final class DreamEquipmentSetEffects {
     private static void bounceLikeSlime(ServerPlayer player, DreamEquipmentSetEffectRules.SlimeRule slime) {
         double bounce = Math.min(1.0, Math.max(slime.bounceMinVelocity(), player.fallDistance / Math.max(1.0f, slime.bounceDistanceDivisor())));
         player.setDeltaMovement(player.getDeltaMovement().x, bounce, player.getDeltaMovement().z);
-        player.hurtMarked = true;
+        player.syncVelocity = true;
         player.resetFallDistance();
     }
 
@@ -254,7 +255,7 @@ public final class DreamEquipmentSetEffects {
         if (stack.nextDamageWillBreak() || stack.getDamageValue() + damage >= stack.getMaxDamage()) {
             player.setItemSlot(slot, ItemStack.EMPTY);
             ItemStack returned = new ItemStack(Items.SLIME_BALL, returnedSlimeBalls);
-            if (!player.addItem(returned)) player.drop(returned, false);
+            if (!player.addItem(returned)) player.drop(returned, false, Prediction.SERVER_ONLY);
         } else {
             stack.setDamageValue(stack.getDamageValue() + damage);
         }

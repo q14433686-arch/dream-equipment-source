@@ -2,23 +2,30 @@
 
 ![Dream Equipment cover](docs/assets/dream_equipment_cover.png)
 
-Standalone Fabric mod project for Minecraft 26.1.2. The project cover art is stored at `docs/assets/dream_equipment_cover.png` and mirrored in resources as `assets/dream_equipment/cover.png`.
+Standalone Fabric mod project for Minecraft 26.3. The project cover art is stored at `docs/assets/dream_equipment_cover.png` and mirrored in resources as `assets/dream_equipment/cover.png`.
 
 This project is separate from `yansheng-source`; that repository is only a workflow/API reference.
 
 ## Environment
 
-- Minecraft `26.1.2`
-- Fabric Loader `0.19.3`
-- Fabric API `0.152.1+26.1.2`
+- Minecraft `26.3`
+- Fabric Loader `0.19.5`
+- Fabric API `0.160.7+26.3`
+- Fabric Loom `1.17.20`
 - Java `25+`
-- Gradle wrapper `9.4.1`
+- Gradle wrapper `9.5.1`
 
-## Build
+## Build & CI
 
 ```bash
-JAVA_HOME=/tmp/herbcraft-jdk25/jdk-25 bash ./gradlew --no-daemon build --rerun-tasks
+# Static consistency, resource drift, JSON schema, asset & balance gate (no Gradle/JDK required)
+bash scripts/check_release_consistency.sh --strict
+
+# Full Gradle build (requires JDK 25 and Maven network access)
+./gradlew --no-daemon build --rerun-tasks
 ```
+
+GitHub Actions workflow templates (`compile-check.yml`, `build.yml`, `consistency.yml`) are staged in `docs/ci/` (see [`docs/ci/README.md`](docs/ci/README.md)), and the 26.3 porting report is at [`docs/reports/PORTING_26_3_REPORT.md`](docs/reports/PORTING_26_3_REPORT.md).
 
 ## Current status
 

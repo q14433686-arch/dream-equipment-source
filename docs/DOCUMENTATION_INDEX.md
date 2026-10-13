@@ -1,6 +1,6 @@
 # Documentation Index
 
-Last updated: 2026-07-06 (Round 57)
+Last updated: 2026-10-13 (MC 26.3 Port & CI Pass)
 
 ## Root workflow/status documents
 
@@ -10,9 +10,11 @@ Last updated: 2026-07-06 (Round 57)
 - `CHANGELOG.md` — release-style change history and validation notes.
 - `README.md` — user-facing project overview and build/environment notes.
 
-## Generated/current reports
+## Generated/current reports & CI
 
-- `docs/reports/CURRENT_AGENT_BRIEF.md` — current agent-readable report generated/maintained from the latest baseline/task/changelog/build-validation state. Updated Round 56 (2026-07-06).
+- `docs/reports/PORTING_26_3_REPORT.md` — Minecraft 26.3 porting report and API migration summary (2026-10-13).
+- `docs/ci/README.md` — `{UN}TACZR`-style GitHub Actions workflow templates (`compile-check.yml`, `build.yml`, `consistency.yml`) and activation guide.
+- `docs/reports/CURRENT_AGENT_BRIEF.md` — current agent-readable report generated/maintained from the latest baseline/task/changelog/build-validation state.
 
 ## Reference reports
 

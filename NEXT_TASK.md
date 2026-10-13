@@ -1,5 +1,18 @@
 # NEXT_TASK
 
+## ✅ 已完成 — Minecraft 26.3 移植与 `{UN}TACZR` 同款 CI 部署（2026-10-13）
+
+### 完成内容
+- 部署 `{UN}TACZR` 同款 CI 模板：`docs/ci/compile-check.yml`、`docs/ci/build.yml`、`docs/ci/consistency.yml`、`docs/ci/README.md` 及静态门禁脚本 `scripts/check_release_consistency.sh`。
+- 升级构建矩阵至 Minecraft `26.3` + Fabric Loader `0.19.5` + Fabric API `0.160.7+26.3` + Fabric Loom `1.17.20` + Gradle `9.5.1` + Java `25`。
+- 完成 26.3 源码适配：
+  1. `DreamEquipmentItems.java`：移除已删除的 `AxeItem` / `ShovelItem` / `HoeItem`，改用 `Item.Properties#axe` / `#shovel` / `#hoe`（`DataComponents.BLOCK_TRANSFORMER`）。
+  2. `DreamEquipmentFuelValues.java`：移除 `FuelValueEvents`，改用 `DefaultItemComponentEvents.MODIFY` + `DataComponents.COOKING_FUEL` (`CookingFuel`)。
+  3. `DreamEquipmentEnchantingSupport.java` & `DreamEquipmentSetEffects.java`：`player.drop(..., false)` → `player.drop(..., false, Prediction.SERVER_ONLY)`。
+  4. `DreamEquipmentSetEffects.java` & `DreamEquipmentShieldEffects.java`：`hurtMarked` → `syncVelocity`。
+  5. `RedStoneWireBlockMixin.java`：`RedStoneWireBlock` → `RedstoneWireBlock`。
+- 详见 `docs/reports/PORTING_26_3_REPORT.md`。
+
 ## ✅ 已完成 — 石质/矿物穿戴贴图批量重做（Round 57，2026-07-06）
 
 ### 完成内容

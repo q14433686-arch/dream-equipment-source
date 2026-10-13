@@ -14,4 +14,4 @@ Rules:
 - User's current request > current source/resources > current docs > old memory.
 - Java owns mechanics, registries, events, sync, and validation.
 - JSON/resources own content data, lang, models, recipes, tags, and balance where a loader exists.
-- Target environment: MC 26.1.2, Fabric Loader 0.19.3, Fabric API 0.152.x, Java 25.
+- Target environment: MC 26.3, Fabric Loader 0.19.5, Fabric API 0.160.7+26.3, Fabric Loom 1.17.20, Gradle 9.5.1, Java 25.
