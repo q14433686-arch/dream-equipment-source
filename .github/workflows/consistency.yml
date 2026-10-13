@@ -1,0 +1,37 @@
+# 放置在 docs/ci/ 供维护者复制到 .github/workflows/consistency.yml
+# 说明见 docs/ci/README.md
+name: Consistency Check
+
+on:
+  push:
+    branches:
+      - "26.3"
+      - "dream-equipment-source-26.3"
+      - "dream-equipment-source-26.2"
+      - "dream-equipment-source-26.1.2"
+      - "main"
+      - "arena/**"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: consistency-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  consistency:
+    name: Release & Metadata Consistency Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run check_release_consistency.sh
+        run: |
+          chmod +x scripts/check_release_consistency.sh
+          ./scripts/check_release_consistency.sh --strict

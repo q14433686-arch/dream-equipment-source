@@ -1,0 +1,51 @@
+# 放置在 docs/ci/ 供维护者复制到 .github/workflows/compile-check.yml
+# 说明见 docs/ci/README.md
+name: Compile Check
+
+on:
+  push:
+    branches:
+      - "26.3"
+      - "dream-equipment-source-26.3"
+      - "dream-equipment-source-26.2"
+      - "dream-equipment-source-26.1.2"
+      - "main"
+      - "arena/**"
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compile-check-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Compile Java (MC 26.3 / Java 25)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run static consistency & asset gates
+        run: |
+          chmod +x scripts/check_release_consistency.sh
+          ./scripts/check_release_consistency.sh
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Compile Java and process resources
+        run: ./gradlew --no-daemon compileJava compileTestJava processResources --stacktrace
